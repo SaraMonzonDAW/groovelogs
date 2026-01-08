@@ -1,0 +1,16 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+    height: 100dvh;
+    background: linear-gradient(to right, #111c37, #17317b);
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
+}

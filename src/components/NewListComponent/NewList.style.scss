@@ -1,0 +1,21 @@
+.newList-container {
+    display: flex;
+    flex-direction: column;
+}
+.grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.newlist-cover {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.newList-card{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 350px;
+}
