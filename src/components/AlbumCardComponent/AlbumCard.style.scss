@@ -1,0 +1,68 @@
+.album-card {
+  width: 260px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #1e3c72, #2a5298);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.album-card__image {
+  height: 280px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.album-card__favorite {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.album-card__content {
+  padding: 16px;
+  color: #ffffff;
+}
+
+.album-card__artist {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.album-card__title {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-bottom: 12px;
+}
+
+.album-card__rating {
+  display: flex;
+  gap: 6px;
+}
+
+.album-card__star {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #9bb3ff;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.album-card__star.is-active {
+  color: #ffd700;
+}
+
+.album-card__star:hover {
+  transform: scale(1.2);
+}

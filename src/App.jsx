@@ -1,25 +1,17 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
 import Header from "./components/HeaderComponent/Header";
-import Search from "./components/SearchComponent/Search";
-import NewList from "./components/NewListComponent/NewList";
+import Discover from "../src/pages/DiscoverPage/Discover";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <div>
-        <Header />
-        <main className="main-container">
-          <Search />
-          <NewList />
-        </main>
-      </div>
+      <Header />
+      <main className="main-container">
+        <Discover />
+      </main>
     </>
   );
 }
 
 export default App;
+

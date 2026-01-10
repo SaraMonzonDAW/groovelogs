@@ -1,16 +1,17 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: "Rubik", sans-serif;
 }
 
 body {
-    height: 100dvh;
+  min-height: 100%;
     background: linear-gradient(to right, #111c37, #17317b);
 }
 
 .main-container {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   align-items: center;
 }
