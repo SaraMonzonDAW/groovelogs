@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getBestSelling } from "../../services/getBestSelling";
 import AlbumCard from "../AlbumCardComponent/AlbumCard";
 import "./NewList.style.scss";
+import AuthModal from "../AuthModalComponent/AuthModal";
 
 export default function NewList() {
   const [bestSellings, setBestSellings] = useState([]);
@@ -44,16 +45,7 @@ export default function NewList() {
         </ul>
       </section>
 
-      {showAuthPopup && (
-        <div className="auth-popup">
-          <div className="auth-popup__content">
-            <p className="pop-up">Debes iniciar sesión o registrarte para puntuar.</p>
-            <button onClick={() => setShowAuthPopup(false)}>
-              Cerrar
-            </button>
-          </div>
-        </div>
-      )}
+      {showAuthPopup && <AuthModal isOpen={showAuthPopup} onClose={() => setShowAuthPopup(false)} />}
     </>
   );
 }

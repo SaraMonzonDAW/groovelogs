@@ -8,11 +8,6 @@ function Search({ value, onChange, onSearch }) {
 
   return (
     <section className="search-section">
-      <div className="search-title-container">
-        <h2>Descubre Música</h2>
-        <h3>Busca tus canciones, artistas y álbumes favoritos</h3>
-      </div>
-
       <form
         className="search-bar-button"
         onSubmit={handleSubmit}

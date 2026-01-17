@@ -3,6 +3,7 @@ import Search from "../../components/SearchComponent/Search";
 import NewList from "../../components/NewListComponent/NewList";
 import ResultsList from "../../components/ResultsListComponent/ResultsList";
 import { searchDiscogs } from "../../services/searchDiscogs";
+import TitleComponent from "../../components/TitleSearchComponent/TitleComponent";
 
 export default function Discover() {
   const [query, setQuery] = useState("");
@@ -23,6 +24,8 @@ export default function Discover() {
 
   return (
     <>
+    {!hasSearched && <TitleComponent title={"Buscar Música"} subtitle="Encuentra tus canciones favoritas" />}
+    {hasSearched && <TitleComponent title="Resultados de la búsqueda" subtitle="Explora nuestra colección completa" />}
       <Search
         value={query}
         onChange={setQuery}
