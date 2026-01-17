@@ -3,6 +3,10 @@ import "./AuthModal.style.scss";
 export default function AuthModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
+  const handleSignUp = () => {
+    window.location.href = "/signup";
+  };
+
   return (
     <div className="auth-overlay" onClick={onClose}>
       <div
@@ -17,8 +21,8 @@ export default function AuthModal({ isOpen, onClose }) {
           <div className="logo-circle">GL</div>
         </div>
 
-        <h2>Registrarse</h2>
-        <p className="subtitle">Crea tu cuenta para empezar</p>
+        <h2>Iniciar sesión</h2>
+        <p className="subtitle">Inicia sesión para empezar</p>
 
         <form className="auth-form">
           <label>
@@ -32,12 +36,12 @@ export default function AuthModal({ isOpen, onClose }) {
           </label>
 
           <button type="submit" className="auth-submit">
-            Crear Cuenta
+            Iniciar Sesión
           </button>
         </form>
 
         <p className="auth-footer">
-          ¿Ya tienes cuenta? <span>Inicia sesión</span>
+          ¿No tienes cuenta? <span onClick={handleSignUp} style={{ cursor: "pointer" }}>Crea una</span>
         </p>
       </div>
     </div>

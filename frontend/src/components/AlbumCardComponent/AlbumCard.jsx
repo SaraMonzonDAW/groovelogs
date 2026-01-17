@@ -2,14 +2,16 @@ import { useState } from "react";
 import Heart from "../../assets/heart.svg";
 import "./AlbumCard.style.scss";
 
-export default function AlbumCard({ item, isLoggedIn, onRequireAuth }) {
+export default function AlbumCard({ item, searchTrack, isLoggedIn, onRequireAuth }) {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const [artist, title] = item.title.includes(" - ")
+  const [artist, releaseTitle] = item.title.includes(" - ")
     ? item.title.split(" - ")
     : ["", item.title];
+
+  const title = searchTrack ?? releaseTitle;
 
   function handleRate(value) {
     if (!isLoggedIn) {
@@ -50,8 +52,8 @@ export default function AlbumCard({ item, isLoggedIn, onRequireAuth }) {
       </div>
 
       <div className="album-card__content">
-        <p className="album-card__artist">{artist}</p>
-        <p className="album-card__title">{title}</p>
+      <p className="album-card__artist">{artist}</p>
+      <p className="album-card__title">{title}</p>
 
         <div className="album-card__rating">
           {[1, 2, 3, 4, 5].map((star) => {

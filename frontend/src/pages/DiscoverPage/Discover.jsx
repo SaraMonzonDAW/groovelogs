@@ -24,20 +24,25 @@ export default function Discover() {
 
   return (
     <>
-    {!hasSearched && <TitleComponent title={"Buscar Música"} subtitle="Encuentra tus canciones favoritas" />}
-    {hasSearched && <TitleComponent title="Resultados de la búsqueda" subtitle="Explora nuestra colección completa" />}
-      <Search
-        value={query}
-        onChange={setQuery}
-        onSearch={handleSearch}
-      />
+      {!hasSearched && (
+        <TitleComponent
+          title={"Buscar Música"}
+          subtitle="Encuentra tus canciones favoritas"
+        />
+      )}
+      {hasSearched && (
+        <TitleComponent
+          title="Resultados de la búsqueda"
+          subtitle="Explora nuestra colección completa"
+        />
+      )}
+      <Search value={query} onChange={setQuery} onSearch={handleSearch} />
 
       {!hasSearched && <NewList />}
 
       {hasSearched && (
-        <ResultsList results={results} loading={loading} />
+        <ResultsList results={results} loading={loading} searchQuery={query} />
       )}
     </>
   );
 }
-
