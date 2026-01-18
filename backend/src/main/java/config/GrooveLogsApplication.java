@@ -5,7 +5,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {
+	    "controllers",
+	    "security",
+	    "daos",
+	    "models",
+	    "connection"
+	})
 public class GrooveLogsApplication extends SpringBootServletInitializer {
 
     @Override

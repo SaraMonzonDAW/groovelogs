@@ -2,7 +2,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/HeaderComponent/Header";
 import Discover from "./pages/DiscoverPage/Discover";
-import Login from "./pages/LoginPage/LoginPage";
+import Signup from "./pages/SignupPage/SignupPage";
+import SignupSuccess from "./pages/SignupSuccess/SignupSuccess";
+
+
 
 import "./App.css";
 
@@ -14,7 +17,8 @@ function App() {
       <main className="main-container">
         <Routes>
           <Route path="/" element={<Discover />} />
-          <Route path="/signup" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup-success" element={<SignupSuccess />} />
         </Routes>
       </main>
     </BrowserRouter>
