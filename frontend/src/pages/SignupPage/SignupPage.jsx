@@ -1,7 +1,9 @@
 import "./Signup.scss";
-import Logo from "../../assets/GrooveLogs.png";
+import Logo from "../../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import eyeOpen from "../../assets/eye-open.svg";
+import eyeClosed from "../../assets/eye-closed.svg";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -14,6 +16,13 @@ export default function Signup() {
   });
 
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const cleanText = (text) =>
+    text.trim().replace(/\s+/g, " ");
 
   const handleChange = (e) => {
     setFormData({
@@ -22,38 +31,70 @@ export default function Signup() {
     });
   };
 
+  const validateForm = () => {
+    if (formData.nombre.trim().length < 3) {
+      setError("El nombre debe tener al menos 3 caracteres");
+      return false;
+    }
+
+    if (!formData.email.includes("@")) {
+      setError("El email no es válido");
+      return false;
+    }
+
+    if (formData.password.length < 8) {
+      setError("La contraseña debe tener al menos 8 caracteres");
+      return false;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Las contraseñas no coinciden");
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
-    if (formData.password !== formData.confirmPassword) {
-      setError("Las contraseñas no coinciden");
-      return;
-    }
+    if (!validateForm()) return;
+
+    setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8080/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nombre: formData.nombre,
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
+      const response = await fetch(
+        "http://localhost:8080/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nombre: cleanText(formData.nombre),
+            email: formData.email.trim().toLowerCase(),
+            password: formData.password,
+          }),
+        }
+      );
+
+      const data = await response.json();
 
       if (!response.ok) {
-        throw new Error("Error al crear la cuenta");
+        setError(data.message || "Error al crear la cuenta");
+        setLoading(false);
+        return;
       }
 
       navigate("/signup-success", {
-        state: { email: formData.email }
+        state: { email: formData.email },
       });
 
     } catch (err) {
-      setError("No se pudo crear la cuenta");
+      setError("No se pudo crear la cuenta. Inténtalo más tarde.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -81,14 +122,12 @@ export default function Signup() {
           </div>
         </div>
       </div>
-
       <div className="login-right">
         <div className="login-card">
           <h2>Únete a GrooveLogs</h2>
           <p className="card-subtitle">
             Crea tu cuenta y descubre nueva música
           </p>
-
           <form className="login-form" onSubmit={handleSubmit}>
             <label>
               Nombre completo
@@ -98,9 +137,9 @@ export default function Signup() {
                 value={formData.nombre}
                 onChange={handleChange}
                 required
+                maxLength={50}
               />
             </label>
-
             <label>
               Email
               <input
@@ -111,41 +150,66 @@ export default function Signup() {
                 required
               />
             </label>
-
             <label>
               Contraseña
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
+              <div className="password-field">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                  minLength={8}
+                />
+                <button
+                  type="button"
+                  className="eye-button"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  <img src={showPassword ? eyeOpen : eyeClosed} alt="toggle password" />
+                </button>
+              </div>
             </label>
-
             <label>
               Confirmar contraseña
-              <input
-                type="password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-              />
+              <div className="password-field">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  required
+                />
+                <button
+                  type="button"
+                  className="eye-button"
+                  onClick={() =>
+                    setShowConfirmPassword(!showConfirmPassword)
+                  }
+                >
+                  <img src={showConfirmPassword ? eyeOpen : eyeClosed} alt="toggle password" />
+                </button>
+              </div>
             </label>
 
             {error && <p className="error">{error}</p>}
 
-            <button type="submit" className="login-button-page">
-              Crear cuenta
+            <button
+              type="submit"
+              className="login-button-page"
+              disabled={loading}
+            >
+              {loading ? "Creando cuenta..." : "Crear cuenta"}
             </button>
           </form>
 
           <p className="register-link">
-            ¿Ya tienes una cuenta? <Link to="/signup-success">Inicia sesión</Link>
+            ¿Ya tienes una cuenta?{" "}
+            <Link to="/login">Inicia sesión</Link>
           </p>
         </div>
       </div>
     </div>
   );
 }
+
