@@ -1,9 +1,17 @@
+@use '../../variables' as *;
+
 .album-card {
   width: 260px;
-  border-radius: 18px;
+  border-radius: $radius-xl;
   overflow: hidden;
   background: linear-gradient(180deg, #1e3c72, #2a5298);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: $shadow-lg;
+  @include smooth-transition();
+}
+
+.album-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
 }
 
 .album-card__image {
@@ -15,23 +23,24 @@
 
 .album-card__favorite {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: $space-3;
+  right: $space-3;
   width: 36px;
   height: 36px;
-  border-radius: 50%;
+  border-radius: $radius-full;
   background: rgba(0, 0, 0, 0.55);
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  @include smooth-transition();
 
   img {
     width: 18px;
     height: 18px;
     filter: brightness(0) invert(1);
-    transition: filter 0.25s ease, transform 0.25s ease;
+    @include smooth-transition();
   }
 
   &:hover {
@@ -54,19 +63,19 @@
 }
 
 .album-card__content {
-  padding: 16px;
-  color: #ffffff;
+  padding: $space-4;
+  color: $text-primary;
 }
 
 .album-card__artist {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
 }
 
 .album-card__title {
-  font-size: 14px;
+  font-size: $font-size-sm;
   opacity: 0.85;
-  margin-bottom: 12px;
+  margin-bottom: $space-3;
 }
 
 .album-card__rating {
@@ -77,11 +86,11 @@
 .album-card__star {
   background: none;
   border: none;
-  font-size: 18px;
-  color: #9bb3ff;
+  font-size: $font-size-lg;
+  color: $text-tertiary;
   cursor: pointer;
   padding: 0;
-  transition: transform 0.15s ease, color 0.15s ease;
+  @include smooth-transition();
 }
 
 .album-card__star.is-active {

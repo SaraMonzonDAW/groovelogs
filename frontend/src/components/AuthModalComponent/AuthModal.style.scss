@@ -1,33 +1,31 @@
+@use '../../variables' as *;
+
 .auth-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(6, 12, 30, 0.75);
+  background: $bg-overlay;
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: $z-modal-backdrop;
 }
 
 .auth-modal {
   position: relative;
   width: 100%;
   max-width: 420px;
-  padding: 36px;
+  padding: $space-9;
 
-  background: radial-gradient(
-    circle at top,
-    #0f1b3d,
-    #050814
-  );
+  background: $gradient-modal;
 
-  border-radius: 18px;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  border-radius: $radius-xl;
+  box-shadow: $shadow-modal;
 
   color: white;
   text-align: center;
 
-  animation: modal-fade-in 0.35s ease;
+  animation: modal-fade-in $transition-base;
 }
 
 @keyframes modal-fade-in {
@@ -43,12 +41,12 @@
 
 .auth-modal__close {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: $space-3;
+  right: $space-3;
   background: transparent;
   border: none;
-  color: white;
-  font-size: 20px;
+  color: $text-primary;
+  font-size: $font-size-xl;
   cursor: pointer;
   opacity: 0.7;
 
@@ -58,21 +56,21 @@
 }
 
 .auth-modal__logo {
-  margin-bottom: 16px;
+  margin-bottom: $space-4;
 
   .logo-circle {
     width: 52px;
     height: 52px;
-    border-radius: 50%;
+    border-radius: $radius-full;
     margin: 0 auto;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background: linear-gradient(135deg, #2f7bff, #17c9ff);
-    font-weight: 700;
-    font-size: 18px;
+    background: $gradient-logo;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-lg;
   }
 }
 

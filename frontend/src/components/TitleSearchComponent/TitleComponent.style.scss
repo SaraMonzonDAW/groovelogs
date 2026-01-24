@@ -1,4 +1,6 @@
+@use '../../variables' as *;
+
 .search-title-container {
-  padding-top: 50px;
+  padding-top: $space-12;
   width: 80vw;
 }

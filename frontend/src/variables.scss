@@ -1,0 +1,329 @@
+// ========================================
+// GROVELOGS - DESIGN SYSTEM & VARIABLES
+// ========================================
+
+// ========================================
+// COLORS - COLORES
+// ========================================
+
+// Primary Colors - GrooveLogs Brand
+$primary-dark: #0c1429;
+$primary-darker: #06192b;
+$primary-darkest: #050814;
+$primary-light: #ffffff;
+
+// Accent Colors - Cyan/Blue Theme
+$accent-cyan: #00b4ff;
+$accent-cyan-light: #00d4ff;
+$accent-blue: #1e90ff;
+$accent-blue-light: #2f7bff;
+$accent-cyan-dark: #00b2e0;
+
+// Secondary Colors - Spotify Green & Purples
+$success-green: #1db954;
+$purple-primary: #0f1b3d;
+$purple-light: #0f1f4b;
+$purple-accent: #152c70;
+$purple-secondary: #17317b;
+$purple-lighter: #111c37;
+
+// Text & UI Colors
+$text-primary: #ffffff;
+$text-secondary: #c7d2ff;
+$text-tertiary: #a9b6ff;
+$text-muted: #9ac6ff;
+$text-dim: #050814;
+
+// Background & Surface Colors
+$bg-primary: linear-gradient(to right, #111c37, #17317b);
+$bg-header: linear-gradient(to right, #0c1429, #152c70);
+$bg-surface: rgba(10, 25, 60, 0.9);
+$bg-surface-light: #0f1f4b;
+$bg-overlay: rgba(6, 12, 30, 0.75);
+$bg-overlay-light: rgba(255, 255, 255, 0.08);
+
+// Gradient Colors
+$gradient-cyan: linear-gradient(90deg, #1e90ff, #00b4ff);
+$gradient-modal: radial-gradient(circle at top, #0f1b3d, #050814);
+$gradient-logo: linear-gradient(135deg, #2f7bff, #17c9ff);
+
+// Border & Shadow Colors
+$border-light: rgba(255, 255, 255, 0.08);
+$border-input: rgba(255, 255, 255, 0.1);
+$shadow-primary: 0 20px 50px rgba(0, 0, 0, 0.4);
+$shadow-modal: 0 30px 80px rgba(0, 0, 0, 0.6);
+$shadow-card: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+// ========================================
+// TYPOGRAPHY - TIPOGRAFÍA
+// ========================================
+
+// Font Families
+$font-family-primary: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-family-secondary: 'Poppins', 'Rubik', sans-serif;
+$font-family-mono: 'Fira Code', 'Courier New', monospace;
+
+// Font Sizes
+$font-size-xs: 0.75rem;     // 12px
+$font-size-sm: 0.875rem;    // 14px
+$font-size-base: 1rem;      // 16px
+$font-size-lg: 1.125rem;    // 18px
+$font-size-xl: 1.25rem;     // 20px
+$font-size-2xl: 1.5rem;     // 24px
+$font-size-3xl: 1.875rem;   // 30px
+$font-size-4xl: 2.25rem;    // 36px
+$font-size-5xl: 3rem;       // 48px
+
+// Font Weights
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+// Line Heights
+$line-height-tight: 1.2;
+$line-height-snug: 1.375;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
+
+// Letter Spacing
+$letter-spacing-tighter: -0.05em;
+$letter-spacing-tight: -0.025em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide: 0.025em;
+$letter-spacing-wider: 0.05em;
+
+// ========================================
+// SPACING - ESPACIADO
+// ========================================
+
+$space-0: 0;
+$space-1: 0.25rem;   // 4px
+$space-2: 0.5rem;    // 8px
+$space-3: 0.75rem;   // 12px
+$space-4: 1rem;      // 16px
+$space-5: 1.25rem;   // 20px
+$space-6: 1.5rem;    // 24px
+$space-7: 1.75rem;   // 28px
+$space-8: 2rem;      // 32px
+$space-9: 2.25rem;   // 36px
+$space-10: 2.5rem;   // 40px
+$space-12: 3rem;     // 48px
+$space-16: 4rem;     // 64px
+$space-20: 5rem;     // 80px
+$space-24: 6rem;     // 96px
+
+// ========================================
+// BORDER RADIUS
+// ========================================
+
+$radius-none: 0;
+$radius-sm: 0.25rem;    // 4px
+$radius-base: 0.375rem; // 6px
+$radius-md: 0.5rem;     // 8px
+$radius-lg: 0.75rem;    // 12px
+$radius-xl: 1rem;       // 16px
+$radius-2xl: 1.5rem;    // 24px
+$radius-3xl: 2rem;      // 32px
+$radius-full: 9999px;   // Fully rounded
+
+// ========================================
+// SHADOWS
+// ========================================
+
+$shadow-none: none;
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+$shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+// Glow Effects
+$glow-primary: 0 0 20px rgba(0, 180, 255, 0.3);
+$glow-secondary: 0 0 20px rgba(47, 123, 255, 0.3);
+$glow-accent: 0 0 20px rgba(30, 144, 255, 0.3);
+
+// ========================================
+// TRANSITIONS & ANIMATIONS
+// ========================================
+
+$transition-fast: 150ms ease-in-out;
+$transition-base: 300ms ease-in-out;
+$transition-slow: 500ms ease-in-out;
+
+$easing-linear: linear;
+$easing-in: ease-in;
+$easing-out: ease-out;
+$easing-in-out: ease-in-out;
+$easing-cubic-bezier: cubic-bezier(0.4, 0, 0.2, 1);
+
+// ========================================
+// Z-INDEX SCALE
+// ========================================
+
+$z-hide: -1;
+$z-base: 0;
+$z-dropdown: 100;
+$z-sticky: 200;
+$z-fixed: 300;
+$z-modal-backdrop: 400;
+$z-modal: 500;
+$z-popover: 600;
+$z-tooltip: 700;
+$z-notification: 800;
+
+// ========================================
+// BREAKPOINTS - PUNTOS DE QUIEBRE
+// ========================================
+
+$breakpoint-xs: 320px;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// ========================================
+// MIXINS - MEZCLAS
+// ========================================
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Grid utilities
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}
+
+// Responsive
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == 'md' {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == 'lg' {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == 'xl' {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  } @else if $breakpoint == 'max-sm' {
+    @media (max-width: calc(#{$breakpoint-sm} - 1px)) {
+      @content;
+    }
+  }
+}
+
+// Text truncate
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin line-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Smooth transitions
+@mixin smooth-transition($property: all, $duration: $transition-base) {
+  transition: $property $duration $easing-in-out;
+}
+
+// Focus styles
+@mixin focus-ring($color: $primary-accent) {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba($color, 0.1), 0 0 0 2px $color;
+}
+
+// Absolute centering
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// ========================================
+// TYPOGRAPHY PRESETS
+// ========================================
+
+// Headings
+@mixin heading-1 {
+  font-family: $font-family-secondary;
+  font-size: $font-size-5xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  letter-spacing: $letter-spacing-tighter;
+}
+
+@mixin heading-2 {
+  font-family: $font-family-secondary;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  letter-spacing: $letter-spacing-tighter;
+}
+
+@mixin heading-3 {
+  font-family: $font-family-secondary;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-snug;
+}
+
+@mixin heading-4 {
+  font-family: $font-family-secondary;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-snug;
+}
+
+// Body text
+@mixin body-large {
+  font-family: $font-family-primary;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-relaxed;
+}
+
+@mixin body-base {
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-normal;
+}
+
+@mixin body-small {
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-normal;
+}
+
+// ========================================

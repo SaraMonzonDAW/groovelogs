@@ -1,21 +1,23 @@
+@use '../../variables' as *;
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to right, #0c1429, #152c70);
+  background: $bg-header;
   width: 100%;
 }
 
 a {
-  color: #fff;
+  color: $text-primary;
       text-decoration: none;
 }
 
 .title {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding-block: 10px;
+  gap: $space-2;
+  padding-block: $space-2;
   margin-inline-start: 10rem;
 }
 
@@ -27,18 +29,23 @@ a {
 .login-button {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: $space-2;
   border: none;
-  color: white;
-  background-color: #00b2e0;
-  font-size: 16px;
+  color: $text-primary;
+  background-color: $accent-cyan-dark;
+  font-size: $font-size-base;
   cursor: pointer;
   text-wrap: nowrap;
-  padding-block: 8px;
-  padding-inline: 12px;
-  border-radius: 10px;
-  font-weight: bold;
+  padding-block: $space-2;
+  padding-inline: $space-3;
+  border-radius: $radius-lg;
+  font-weight: $font-weight-bold;
   margin-inline-end: 12rem;
+  @include smooth-transition();
+}
+
+.login-button:hover {
+  opacity: 0.9;
 }
 
 .person-icon {

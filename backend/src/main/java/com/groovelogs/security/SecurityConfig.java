@@ -1,4 +1,4 @@
-package security;
+package com.groovelogs.security;
 
 import java.util.List;
 
@@ -14,28 +14,18 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
+	    http
+	        .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+	        .csrf(csrf -> csrf.disable())
+	        .authorizeHttpRequests(auth -> auth
+	            .anyRequest().permitAll()
+	        );
 
-                .requestMatchers("/api/auth/**").permitAll()
-
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-
-                .requestMatchers("/api/**").authenticated()
-
-                .anyRequest().permitAll()
-            )
-
-            .httpBasic(httpBasic -> httpBasic.disable())
-            .formLogin(form -> form.disable());
-
-        return http.build();
-    }
+	    return http.build();
+	}
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
