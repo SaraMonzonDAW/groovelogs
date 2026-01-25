@@ -1,21 +1,54 @@
 import "./AuthModal.style.scss";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function AuthModal({ isOpen, onClose }) {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
   if (!isOpen) return null;
 
   const handleSignUp = () => {
-    window.location.href = "/signup";
+    onClose();
+    navigate("/signup");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Credenciales incorrectas");
+      }
+
+      const user = await response.json();
+
+      localStorage.setItem("user", JSON.stringify(user));
+
+      onClose();
+      navigate("/");
+
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
     <div className="auth-overlay" onClick={onClose}>
-      <div
-        className="auth-modal"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button className="auth-modal__close" onClick={onClose}>
-          ✕
-        </button>
+      <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
+        <button className="auth-modal__close" onClick={onClose}>✕</button>
 
         <div className="auth-modal__logo">
           <div className="logo-circle">GL</div>
@@ -24,16 +57,30 @@ export default function AuthModal({ isOpen, onClose }) {
         <h2>Iniciar sesión</h2>
         <p className="subtitle">Inicia sesión para empezar</p>
 
-        <form className="auth-form">
+        <form className="auth-form" onSubmit={handleSubmit}>
           <label>
             Email
-            <input type="email" placeholder="tu@email.com" />
+            <input
+              type="email"
+              placeholder="tu@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
           </label>
 
           <label>
             Contraseña
-            <input type="password" placeholder="••••••••" />
+            <input
+              type="password"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
           </label>
+
+          {error && <p className="auth-error">{error}</p>}
 
           <button type="submit" className="auth-submit">
             Iniciar Sesión
@@ -41,7 +88,10 @@ export default function AuthModal({ isOpen, onClose }) {
         </form>
 
         <p className="auth-footer">
-          ¿No tienes cuenta? <span onClick={handleSignUp} style={{ cursor: "pointer" }}>Crea una</span>
+          ¿No tienes cuenta?{" "}
+          <span onClick={handleSignUp} style={{ cursor: "pointer" }}>
+            Crea una
+          </span>
         </p>
       </div>
     </div>
