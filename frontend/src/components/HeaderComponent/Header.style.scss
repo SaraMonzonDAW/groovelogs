@@ -51,3 +51,60 @@ a {
 .person-icon {
   width: 20px;
 }
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  margin-inline-end: 12rem;
+}
+
+.user-pill {
+  padding: $space-2 $space-3;
+  border-radius: $radius-xl;
+  cursor: pointer;
+  @include smooth-transition();
+}
+
+.user-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.user-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.username {
+  font-weight: $font-weight-bold;
+  font-size: $font-size-base;
+  color: $text-primary;
+}
+
+.email {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+}
+
+.logout-button {
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  @include smooth-transition();
+  background: #2d417a;
+}
+
+.logout-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.logout-button img {
+  width: 16px;
+  height: 16px;
+}

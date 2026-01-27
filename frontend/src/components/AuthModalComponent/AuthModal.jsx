@@ -1,8 +1,10 @@
 import "./AuthModal.style.scss";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 export default function AuthModal({ isOpen, onClose }) {
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -33,13 +35,13 @@ export default function AuthModal({ isOpen, onClose }) {
         throw new Error("Credenciales incorrectas");
       }
 
-      const user = await response.json();
+      const data = await response.json();
 
-      localStorage.setItem("user", JSON.stringify(user));
+      // 🔥 CLAVE: actualizar el AuthContext
+      login(data.token);
 
       onClose();
       navigate("/");
-
     } catch (err) {
       setError(err.message);
     }

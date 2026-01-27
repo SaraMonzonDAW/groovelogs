@@ -13,16 +13,21 @@ public class Usuario {
     private String nombre;
     private String email;
     private String password;
+    private String apellidos;
+    private String bio;
 
     public Usuario() {}
 
-    // ✅ GETTERS
     public Long getId() {
         return id;
     }
 
     public String getNombre() {
         return nombre;
+    }
+    
+    public String getApellidos() {
+        return apellidos;
     }
 
     public String getEmail() {
@@ -32,8 +37,11 @@ public class Usuario {
     public String getPassword() {
         return password;
     }
+    
+    public String getBio() {
+    	return bio;
+    }
 
-    // ✅ SETTERS
     public void setId(Long id) {
         this.id = id;
     }
@@ -48,6 +56,14 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public void setApellidos(String apellidos) {
+    	this.apellidos = apellidos;
+    }
+    
+    public void setBio(String bio) {
+    	this.bio = bio;
     }
 }
 

@@ -1,0 +1,28 @@
+.profile-form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 15, 40, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.profile-form-card {
+  background: linear-gradient(135deg, #0b3c8c, #114fa3);
+  padding: 2rem;
+  border-radius: 20px;
+  width: 420px;
+  color: white;
+}
+
+.profile-form-card form {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}

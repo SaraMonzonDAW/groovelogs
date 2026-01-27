@@ -36,6 +36,21 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
     
+    public Usuario buscarPorEmail(String email) {
+        return usuarioRepository
+            .findByEmail(email)
+            .orElseThrow();
+    }
+
+    public Usuario actualizarPerfil(String email, Usuario datos) {
+        Usuario u = buscarPorEmail(email);
+
+        u.setNombre(datos.getNombre());
+        u.setApellidos(datos.getApellidos());
+        u.setBio(datos.getBio());
+
+        return usuarioRepository.save(u);
+    }
     
 
     public List<Usuario> obtenerTodos() {
