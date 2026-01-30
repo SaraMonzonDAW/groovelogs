@@ -14,7 +14,8 @@ public class Usuario {
     private String email;
     private String password;
     private String apellidos;
-    private String bio;
+    private String displayName;
+    private String favoriteArtist;
 
     public Usuario() {}
 
@@ -37,10 +38,7 @@ public class Usuario {
     public String getPassword() {
         return password;
     }
-    
-    public String getBio() {
-    	return bio;
-    }
+
 
     public void setId(Long id) {
         this.id = id;
@@ -62,8 +60,21 @@ public class Usuario {
     	this.apellidos = apellidos;
     }
     
-    public void setBio(String bio) {
-    	this.bio = bio;
+    public String getDisplayName() {
+        return displayName;
     }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getFavoriteArtist() {
+        return favoriteArtist;
+    }
+
+    public void setFavoriteArtist(String favoriteArtist) {
+        this.favoriteArtist = favoriteArtist;
+    }
+
 }
 

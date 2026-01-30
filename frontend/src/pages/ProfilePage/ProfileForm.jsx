@@ -1,21 +1,33 @@
 import { useEffect, useState } from "react";
 import { authFetch } from "../../services/authFetch";
+import "./Profile.style.scss";
 
 export default function ProfileForm({ onClose }) {
   const [formData, setFormData] = useState({
-    username: "",
+    nombre: "",
+    apellidos: "",
     email: "",
-    name: "",
-    surname: "",
     bio: "",
+    displayName: "",
+    favoriteArtist: "",
+    avatarUrl: "",
   });
 
   useEffect(() => {
     const loadProfile = async () => {
-      const res = await authFetch("http://localhost:8080/api/users/me");
+      const res = await authFetch("http://localhost:8080/api/usuarios/me");
       const data = await res.json();
-      setFormData(data);
+
+      setFormData({
+        nombre: data.nombre ?? "",
+        apellidos: data.apellidos ?? "",
+        email: data.email ?? "",
+        displayName: data.displayName ?? "",
+        favoriteArtist: data.favoriteArtist ?? "",
+        avatarUrl: data.avatarUrl ?? "",
+      });
     };
+
     loadProfile();
   }, []);
 
@@ -29,9 +41,15 @@ export default function ProfileForm({ onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await authFetch("http://localhost:8080/api/users/me", {
+    await authFetch("http://localhost:8080/api/usuarios/me", {
       method: "PUT",
-      body: JSON.stringify(formData),
+      body: JSON.stringify({
+        nombre: formData.nombre,
+        apellidos: formData.apellidos,
+        displayName: formData.displayName,
+        favoriteArtist: formData.favoriteArtist,
+        avatarUrl: formData.avatarUrl,
+      }),
     });
 
     onClose();
@@ -45,37 +63,43 @@ export default function ProfileForm({ onClose }) {
         <form onSubmit={handleSubmit}>
           <label>
             Nombre
-            <input name="name" value={formData.name} onChange={handleChange} />
+            <input
+              name="nombre"
+              value={formData.nombre}
+              onChange={handleChange}
+            />
           </label>
 
           <label>
             Apellidos
             <input
-              name="surname"
-              value={formData.surname}
+              name="apellidos"
+              value={formData.apellidos}
               onChange={handleChange}
             />
           </label>
 
           <label>
-            Nombre de usuario
+            Nombre visible
             <input
-              name="username"
-              value={formData.username}
+              name="displayName"
+              value={formData.displayName}
               onChange={handleChange}
             />
           </label>
 
+          <label>
+            Artista favorito
+            <input
+              name="favoriteArtist"
+              value={formData.favoriteArtist}
+              onChange={handleChange}
+            />
+          </label>
           <label>
             Email
             <input name="email" value={formData.email} disabled />
           </label>
-
-          <label>
-            Bio
-            <textarea name="bio" value={formData.bio} onChange={handleChange} />
-          </label>
-
           <div className="form-actions">
             <button type="button" onClick={onClose}>
               Cancelar

@@ -1,3 +1,79 @@
+@use '../../variables' as *;
+
+.profile-page{
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80vw;
+  justify-self: center;
+  gap: 100px;
+}
+.profilePage-link{
+  display: flex;
+  align-items: center;
+}
+.profile-user{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $space-4;
+  margin-left: 20px;
+}
+.edit-profile-btn{
+  background-color: $primary-light;
+  color: $primary-dark;
+  padding: $space-2 $space-4;
+  border-radius: $radius-md;
+  display: flex;
+  gap: 8px;
+  border: none;
+  margin-right: 60px;
+}
+.profileData-container{
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+  padding: $space-4;
+}
+.profile-container{
+  background-color: #14468c;
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  border-radius: 30px;
+  align-self: center;
+}
+.profileData-card{
+  display: flex;
+  align-items: center;
+}
+.profileData-svg{
+  width: 20px;
+  height: 20px;
+  margin-right: $space-4;
+}
+.card-text{
+  display: flex;
+  flex-direction: column;
+}
+.card-textStats{
+  font-size: $font-size-lg;
+  font-weight: 600;
+  color: $text-primary;
+}
+.profileData-deleteButton{
+  background-color: $primary-light;
+  color: #ff6467;
+  padding: $space-2 $space-4;
+  border-radius: $radius-md;
+  border: none;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
 .profile-form-overlay {
   position: fixed;
   inset: 0;
@@ -7,7 +83,19 @@
   align-items: center;
   z-index: 100;
 }
-
+.profileData-activity{
+  display: flex;
+}
+.profileData-card{
+  background-color: $purple-accent;
+  border-radius: 20px;
+  width: 300px;
+  height: 50px;
+  margin: $space-4;
+  padding: $space-4;
+  color: $text-tertiary;
+  font-weight: 600;
+}
 .profile-form-card {
   background: linear-gradient(135deg, #0b3c8c, #114fa3);
   padding: 2rem;
@@ -25,4 +113,92 @@
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
+}
+.profile-form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 10, 30, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.profile-form-card {
+  background: linear-gradient(180deg, #0f3c8c, #0b2f6b);
+  border-radius: 16px;
+  padding: 2.5rem 3rem;
+  width: 100%;
+  max-width: 520px;
+  color: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.profile-form-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.profile-form-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.profile-form-card label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  opacity: 0.9;
+  gap: 0.4rem;
+}
+
+.profile-form-card input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.profile-form-card input:disabled {
+  opacity: 0.6;
+}
+
+.profile-form-card input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.form-actions button {
+  padding: 0.6rem 1.4rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+}
+
+.form-actions button[type="submit"] {
+  background: #1dd1a1;
+  color: #062b22;
+  font-weight: 600;
+}
+
+.form-actions button[type="button"] {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.form-actions button:hover {
+  opacity: 0.9;
 }

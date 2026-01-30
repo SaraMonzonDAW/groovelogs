@@ -34,11 +34,6 @@ public class UsuarioController {
     Authentication authentication,
     @RequestBody Usuario datos
     ) {
-    System.out.println("DATOS RECIBIDOS:");
-    System.out.println("Nombre: " + datos.getNombre());
-    System.out.println("Apellidos: " + datos.getApellidos());
-    System.out.println("Bio: " + datos.getBio());
-
 
     String email = authentication.getName();
     return usuarioService.actualizarPerfil(email, datos);

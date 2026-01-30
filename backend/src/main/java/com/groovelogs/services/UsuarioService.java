@@ -47,8 +47,8 @@ public class UsuarioService {
 
         u.setNombre(datos.getNombre());
         u.setApellidos(datos.getApellidos());
-        u.setBio(datos.getBio());
-
+        u.setDisplayName(datos.getDisplayName());
+        u.setFavoriteArtist(datos.getFavoriteArtist());
         return usuarioRepository.save(u);
     }
     

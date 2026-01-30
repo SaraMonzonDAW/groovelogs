@@ -1,5 +1,6 @@
 import { useAuth } from "../../context/AuthContext";
 import EditIcon from "../../assets/edit.svg";
+import "./Profile.style.scss";
 
 export default function ProfileHeader({ onEdit }) {
   const { user } = useAuth();
@@ -7,19 +8,16 @@ export default function ProfileHeader({ onEdit }) {
   return (
     <section className="profile-header">
       <div className="profile-user">
-        <div className="profile-avatar">👤</div>
-
         <div>
-          <h2>¡Bienvenido, {user?.email.split("@")[0]}!</h2>
-          <p>{user?.email}</p>
+          <h2>¡Bienvenido, {user?.displayName}!</h2>
+        </div>
+        <div>
+          <button className="edit-profile-btn" onClick={onEdit}>
+            <img src={EditIcon} alt="" />
+            Editar Perfil
+          </button>
         </div>
       </div>
-
-      <button className="edit-profile-btn" onClick={onEdit}>
-        <img src={EditIcon} alt="" />
-        Editar Perfil
-      </button>
-
     </section>
   );
 }

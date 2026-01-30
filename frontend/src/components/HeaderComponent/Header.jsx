@@ -7,6 +7,8 @@ import Logout from "../../assets/exit.svg";
 
 function Header() {
   const { isAuthenticated, user, logout } = useAuth();
+  console.log(user, 'USUARIOS');
+  
   const navigate = useNavigate();
 
   const handleLogin = () => navigate("/login");
@@ -34,7 +36,7 @@ function Header() {
         <div className="user-info">
           <div className="user-pill" onClick={handleProfile}>
             <div className="user-text">
-              <span className="username">{user?.email.split("@")[0]}</span>
+              <span className="username">{user?.displayName}</span>
               <span className="email">{user?.email}</span>
             </div>
           </div>

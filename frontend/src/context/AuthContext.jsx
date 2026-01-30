@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import { authFetch } from "../services/authFetch";
 
 const AuthContext = createContext();
 
@@ -15,18 +16,36 @@ export function AuthProvider({ children }) {
         const decoded = jwtDecode(storedToken);
         setToken(storedToken);
         setUser({ email: decoded.sub });
+
+        loadProfile(storedToken);
       } catch {
         localStorage.removeItem("token");
       }
     }
   }, []);
 
-  const login = (jwt) => {
+  const loadProfile = async (jwt) => {
+    const res = await authFetch("http://localhost:8080/api/usuarios/me", {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
+    const data = await res.json();
+
+    setUser({
+      email: data.email,
+      displayName: data.displayName,
+    });
+  };
+
+  const login = async (jwt) => {
     localStorage.setItem("token", jwt);
+    setToken(jwt);
 
     const decoded = jwtDecode(jwt);
-    setToken(jwt);
     setUser({ email: decoded.sub });
+
+    await loadProfile(jwt);
   };
 
   const logout = () => {
@@ -40,7 +59,7 @@ export function AuthProvider({ children }) {
       value={{
         token,
         user,
-        isAuthenticated: !!token, 
+        isAuthenticated: !!token,
         login,
         logout,
       }}
