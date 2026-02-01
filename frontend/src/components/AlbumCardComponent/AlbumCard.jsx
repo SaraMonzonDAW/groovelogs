@@ -52,19 +52,20 @@ export default function AlbumCard({ item, searchTrack, onRequireAuth }) {
       discogsId: item.id,
       tipo: "album",
       puntuacion: value,
+      titulo: title,
+      artista: artist,
     }).catch(console.error);
   }
 
   useEffect(() => {
-  if (!isAuthenticated) return;
+    if (!isAuthenticated) return;
 
-  getMyRating(item.id, "album")
-    .then((data) => {
-      if (data) setRating(data.puntuacion);
-    })
-    .catch(() => setRating(0));
-}, [isAuthenticated, item.id]);
-
+    getMyRating(item.id, "album")
+      .then((data) => {
+        if (data) setRating(data.puntuacion);
+      })
+      .catch(() => setRating(0));
+  }, [isAuthenticated, item.id]);
 
   function handleFavorite() {
     if (!isAuthenticated) {

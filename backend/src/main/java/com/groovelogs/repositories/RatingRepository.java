@@ -20,5 +20,7 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
 
     List<Rating> findByDiscogsIdAndTipo(Long discogsId, String tipo);
     
+    long countByUsuario(Usuario usuario);
+       
 }
 

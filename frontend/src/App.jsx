@@ -1,9 +1,4 @@
-import {
-  Routes,
-  Route,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "./context/AuthContext";
 import AuthModal from "./components/AuthModalComponent/AuthModal";
@@ -13,6 +8,7 @@ import Signup from "./pages/SignupPage/SignupPage";
 import SignupSuccess from "./pages/SignupSuccess/SignupSuccess";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Profile from "./pages/ProfilePage/Profile";
+import EditProfile from "./pages/ProfilePage/EditProfile";
 
 function App() {
   const location = useLocation();
@@ -20,13 +16,13 @@ function App() {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const { isAuthenticated } = useAuth();
 
-useEffect(() => {
-  if (location.pathname === "/login" && !isAuthenticated) {
-    setIsAuthOpen(true);
-  } else {
-    setIsAuthOpen(false);
-  }
-}, [location.pathname, isAuthenticated]);
+  useEffect(() => {
+    if (location.pathname === "/login" && !isAuthenticated) {
+      setIsAuthOpen(true);
+    } else {
+      setIsAuthOpen(false);
+    }
+  }, [location.pathname, isAuthenticated]);
 
   const closeModal = () => {
     setIsAuthOpen(false);
@@ -47,6 +43,14 @@ useEffect(() => {
             element={
               <PrivateRoute>
                 <Profile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile/edit"
+            element={
+              <PrivateRoute>
+                <EditProfile />
               </PrivateRoute>
             }
           />

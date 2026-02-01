@@ -1,0 +1,40 @@
+@use '../../variables' as *;
+
+.profile-page {
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.profilePage-link {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  text-decoration: none;
+  font-weight: 500;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+  
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.profile-container {
+  background: linear-gradient(135deg, #0f3c8c 0%, #1a5eb8 100%);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  border-radius: 20px;
+  align-self: center;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}

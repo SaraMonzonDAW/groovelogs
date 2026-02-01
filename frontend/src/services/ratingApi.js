@@ -32,3 +32,17 @@ export async function getMyRating(discogsId, tipo) {
   if (!res.ok) throw new Error("Error loading rating");
   return res.json(); 
 }
+
+export async function getTotalRatings() {
+  const res = await authFetch(`${API_URL}/me/count`);
+
+  if (!res.ok) throw new Error("Error loading total ratings");
+  return res.json();
+}
+
+export async function getMyRatings() {
+  const res = await authFetch(`${API_URL}/me/all`);
+  if (!res.ok) throw new Error("Error loading ratings");
+  return res.json();
+}
+

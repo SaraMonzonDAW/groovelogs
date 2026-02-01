@@ -19,20 +19,22 @@ public class RatingService {
     }
 
     public Rating guardarRating(Usuario usuario, Rating rating) {
-        Rating r = ratingRepository
-            .findByUsuarioAndDiscogsIdAndTipo(
-                usuario,
-                rating.getDiscogsId(),
-                rating.getTipo()
-            )
-            .orElse(new Rating());
+    	 Rating r = ratingRepository
+	        .findByUsuarioAndDiscogsIdAndTipo(
+	            usuario,
+	            rating.getDiscogsId(),
+	            rating.getTipo()
+	        )
+	        .orElse(new Rating());
 
-        r.setUsuario(usuario);
-        r.setDiscogsId(rating.getDiscogsId());
-        r.setTipo(rating.getTipo());
-        r.setPuntuacion(rating.getPuntuacion());
+	    r.setUsuario(usuario);
+	    r.setDiscogsId(rating.getDiscogsId());
+	    r.setTipo(rating.getTipo());
+	    r.setPuntuacion(rating.getPuntuacion());
+	    r.setTitulo(rating.getTitulo());
+	    r.setArtista(rating.getArtista());
 
-        return ratingRepository.save(r);
+	    return ratingRepository.save(r);
     }
 
     public List<Rating> ratingsDeUsuario(Usuario usuario) {
@@ -59,6 +61,10 @@ public class RatingService {
     	        tipo
     	    );
     	}
-
+    
+    public long totalRatings(Usuario usuario) {
+        return ratingRepository.countByUsuario(usuario);
+    }
+    
 }
 

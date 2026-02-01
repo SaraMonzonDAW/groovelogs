@@ -20,8 +20,11 @@ public class Rating {
     private Usuario usuario;
 
     private Long discogsId;
-    private String tipo; 
+    private String tipo;
     private int puntuacion;
+
+    private String titulo;
+    private String artista;
 	public Long getId() {
 		return id;
 	}
@@ -51,10 +54,18 @@ public class Rating {
 	}
 	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
-	} 
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	public String getArtista() {
+		return artista;
+	}
+	public void setArtista(String artista) {
+		this.artista = artista;
+	}
 
-    
 }
-
-
-

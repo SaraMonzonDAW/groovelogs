@@ -58,5 +58,23 @@ public class RatingController {
         double media = ratingService.media(discogsId, tipo);
         return Map.of("media", media);
     }
+    
+    @GetMapping("/me/count")
+    public long misRatingsCount(Authentication authentication) {
+        Usuario usuario =
+            usuarioService.buscarPorEmail(authentication.getName());
+
+        return ratingService.totalRatings(usuario);
+    }
+    
+    @GetMapping("/me/all")
+    public List<Rating> misRatings(Authentication authentication) {
+        Usuario usuario =
+            usuarioService.buscarPorEmail(authentication.getName());
+
+        return ratingService.ratingsDeUsuario(usuario);
+    }
+
+
 }
 

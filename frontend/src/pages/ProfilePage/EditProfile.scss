@@ -1,0 +1,90 @@
+@use '../../variables' as *;
+
+.profile-form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 10, 30, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.profile-form-card {
+  background: linear-gradient(180deg, #0f3c8c, #0b2f6b);
+  border-radius: 16px;
+  padding: 2.5rem 3rem;
+  width: 100%;
+  max-width: 520px;
+  color: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+
+  h3 {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    opacity: 0.9;
+    gap: 0.4rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 0.95rem;
+
+    &:disabled {
+      opacity: 0.6;
+    }
+
+    &:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.18);
+    }
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+
+  button {
+    padding: 0.6rem 1.4rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+
+    &[type="submit"] {
+      background: #1dd1a1;
+      color: #062b22;
+      font-weight: 600;
+    }
+
+    &[type="button"] {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}

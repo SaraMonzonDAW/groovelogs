@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import ProfileHeader from "./ProfileHeader";
-import ProfileForm from "./ProfileForm";
 import ProfileData from "./ProfileData";
 import Arrow from "../../assets/arrow-left.svg";
-import "./Profile.style.scss";
+import "./Profile.scss";
+import EditProfile from "./EditProfile";
 
 export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -17,7 +17,7 @@ export default function Profile() {
             <ProfileData></ProfileData>
       </div>
       {isEditing && (
-        <ProfileForm
+        <EditProfile
           onClose={() => setIsEditing(false)}
         />
       )}
