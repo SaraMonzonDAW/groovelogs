@@ -1,5 +1,8 @@
 package com.groovelogs.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -75,6 +78,10 @@ public class Usuario {
     public void setFavoriteArtist(String favoriteArtist) {
         this.favoriteArtist = favoriteArtist;
     }
+    
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Favorito> favoritos = new ArrayList<>();
+
 
 }
 

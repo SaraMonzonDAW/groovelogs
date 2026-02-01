@@ -37,7 +37,6 @@ export default function AuthModal({ isOpen, onClose }) {
 
       const data = await response.json();
 
-      // 🔥 CLAVE: actualizar el AuthContext
       login(data.token);
 
       onClose();

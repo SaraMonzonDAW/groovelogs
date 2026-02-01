@@ -1,11 +1,11 @@
 import {
-  BrowserRouter,
   Routes,
   Route,
   useLocation,
   useNavigate,
 } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useAuth } from "./context/AuthContext";
 import AuthModal from "./components/AuthModalComponent/AuthModal";
 import Header from "./components/HeaderComponent/Header";
 import Discover from "./pages/DiscoverPage/Discover";
@@ -18,14 +18,15 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const { isAuthenticated } = useAuth();
 
-  useEffect(() => {
-    if (location.pathname === "/login") {
-      setIsAuthOpen(true);
-    } else {
-      setIsAuthOpen(false);
-    }
-  }, [location.pathname]);
+useEffect(() => {
+  if (location.pathname === "/login" && !isAuthenticated) {
+    setIsAuthOpen(true);
+  } else {
+    setIsAuthOpen(false);
+  }
+}, [location.pathname, isAuthenticated]);
 
   const closeModal = () => {
     setIsAuthOpen(false);
