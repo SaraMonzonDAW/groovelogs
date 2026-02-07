@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
-  base: "/",
+  base: "/groovelogs/",
 
   plugins: [
     react(),
@@ -21,7 +21,7 @@ export default defineConfig({
         background_color: "#ffffff",
         display: "standalone",
 
-        start_url: "/groovelogs/",
+        start_url: "/",
         scope: "/groovelogs/",
 
         icons: [
