@@ -36,6 +36,7 @@ function App() {
       <main className="main-container">
         <Routes>
           <Route path="/" element={<Discover />} />
+          <Route path="/search" element={<Discover />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signup-success" element={<SignupSuccess />} />
           <Route

@@ -36,7 +36,7 @@ export default function ResultsList({ results, loading, searchQuery }) {
   }
 
   return (
-    <section>
+    <section className="results-container">
       <div className="filter-buttons">
         {FILTERS.map((filter) => (
           <button

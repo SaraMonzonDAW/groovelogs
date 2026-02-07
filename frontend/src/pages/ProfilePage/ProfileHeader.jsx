@@ -1,9 +1,11 @@
 import { useAuth } from "../../context/AuthContext";
 import EditIcon from "../../assets/edit.svg";
+import { useNavigate } from "react-router-dom";
 import "./ProfileHeader.scss";
 
 export default function ProfileHeader({ onEdit }) {
   const { user } = useAuth();
+  const navigate = useNavigate();
 
 return (
   <section className="profile-header">
