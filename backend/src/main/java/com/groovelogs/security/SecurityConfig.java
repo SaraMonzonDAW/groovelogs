@@ -39,7 +39,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 		.authorizeHttpRequests(auth -> auth
 		
 		.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-	
+
 		.requestMatchers(
 		"/swagger-ui/**",
 		"/v3/api-docs/**"
@@ -50,6 +50,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 		"/api/auth/register"
 		).permitAll()
 		
+		.requestMatchers("/api/discogs/**").permitAll()
+
 		.anyRequest().authenticated()
 		)
 		.addFilterBefore(
@@ -61,23 +63,29 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 	return http.build();
 }
 
-
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
-	
-		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowedOrigins(List.of("http://localhost:5173"));
-		config.setAllowedMethods(
-		List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
-		);
-		config.setAllowedHeaders(List.of("*"));
-		config.setAllowCredentials(true);
-		
-		
-		UrlBasedCorsConfigurationSource source =
-		new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", config);
-	
-	return source;
+
+	    CorsConfiguration config = new CorsConfiguration();
+
+	    config.setAllowedOrigins(List.of(
+	        "http://localhost:5173",
+	        "https://saramonzondaw.github.io"
+	    ));
+
+	    config.setAllowedMethods(
+	        List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
+	    );
+
+	    config.setAllowedHeaders(List.of("*"));
+
+	    config.setAllowCredentials(true);
+
+	    UrlBasedCorsConfigurationSource source =
+	        new UrlBasedCorsConfigurationSource();
+
+	    source.registerCorsConfiguration("/**", config);
+
+	    return source;
 	}
 }

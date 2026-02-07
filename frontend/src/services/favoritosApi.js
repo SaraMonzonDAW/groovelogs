@@ -1,6 +1,6 @@
 import { authFetch } from "./authFetch";
 
-const API_URL = "http://localhost:8080/api/favoritos";
+const API_URL = `${import.meta.env.VITE_API_URL}/favoritos`;
 
 export async function getFavorites() {
   const res = await authFetch(API_URL);

@@ -18,7 +18,7 @@ export function searchDiscogs({
   page = 1,
   per_page = 20,
 }) {
-  return discogsFetch('/database/search', {
+  return discogsFetch('/search', {
     q: query,
     type,
     title,

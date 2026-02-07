@@ -1,6 +1,6 @@
 import { authFetch } from "./authFetch";
 
-const API_URL = "http://localhost:8080/api/ratings";
+const API_URL = `${import.meta.env.VITE_API_URL}/ratings`;
 
 export async function rateItem(rating) {
   const res = await authFetch(API_URL, {
@@ -21,7 +21,7 @@ export async function getAverage(discogsId, tipo) {
   );
 
   if (!res.ok) throw new Error("Error loading average");
-  return res.json(); 
+  return res.json();
 }
 
 export async function getMyRating(discogsId, tipo) {
@@ -30,7 +30,7 @@ export async function getMyRating(discogsId, tipo) {
   );
 
   if (!res.ok) throw new Error("Error loading rating");
-  return res.json(); 
+  return res.json();
 }
 
 export async function getTotalRatings() {
@@ -45,4 +45,3 @@ export async function getMyRatings() {
   if (!res.ok) throw new Error("Error loading ratings");
   return res.json();
 }
-
