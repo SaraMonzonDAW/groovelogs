@@ -100,10 +100,8 @@ export default function Signup() {
 
   return (
     <div className="login-container">
+        <div className="login-panel">
       <div className="login-left">
-        <img src={Logo} alt="GrooveLogs" className="login-logo" />
-        <Link to="/" className="back-link">← Volver al inicio</Link>
-
         <h1>GrooveLogs</h1>
         <p className="subtitle">Tu plataforma musical definitiva</p>
 
@@ -208,6 +206,7 @@ export default function Signup() {
             <Link to="/login">Inicia sesión</Link>
           </p>
         </div>
+      </div>
       </div>
     </div>
   );

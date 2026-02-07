@@ -2,6 +2,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { authFetch } from "../services/authFetch";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
@@ -13,45 +15,42 @@ export function AuthProvider({ children }) {
 
     if (storedToken) {
       try {
-        const decoded = jwtDecode(storedToken);
+        jwtDecode(storedToken);
         setToken(storedToken);
-        setUser({ email: decoded.sub });
-
-        loadProfile(storedToken);
+        loadProfile();
       } catch {
         localStorage.removeItem("token");
       }
     }
   }, []);
 
-  const loadProfile = async (jwt) => {
-    const res = await authFetch("http://localhost:8080/api/usuarios/me", {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    });
+  const loadProfile = async () => {
+    const res = await authFetch(`${API_URL}/usuarios/me`);
     const data = await res.json();
 
     setUser({
       email: data.email,
       displayName: data.displayName,
+      favoriteArtist: data.favoriteArtist,
     });
   };
 
   const login = async (jwt) => {
     localStorage.setItem("token", jwt);
     setToken(jwt);
-
-    const decoded = jwtDecode(jwt);
-    setUser({ email: decoded.sub });
-
-    await loadProfile(jwt);
+    await loadProfile();
   };
 
   const logout = () => {
     localStorage.removeItem("token");
     setToken(null);
     setUser(null);
+  };
+
+  const refreshUser = async () => {
+  if (!token) return;
+
+  await loadProfile(token);
   };
 
   return (
@@ -62,6 +61,7 @@ export function AuthProvider({ children }) {
         isAuthenticated: !!token,
         login,
         logout,
+        refreshUser,
       }}
     >
       {children}

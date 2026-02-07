@@ -1,4 +1,4 @@
-@use '../../variables' as *;
+@use "../../variables" as *;
 
 .auth-overlay {
   position: fixed;
@@ -124,7 +124,9 @@
   font-weight: 600;
   cursor: pointer;
 
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 
   &:hover {
     transform: translateY(-1px);
@@ -149,4 +151,53 @@
 .pop-up {
   font-size: 18px;
   margin-bottom: 20px;
+}
+@media (max-width: 576px) {
+  .auth-overlay {
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  .auth-modal {
+    width: 100%;
+    max-width: 100%;
+    padding: $space-6;
+    border-radius: $radius-xl;
+  }
+
+  .auth-modal__logo .logo-circle {
+    width: 44px;
+    height: 44px;
+    font-size: $font-size-base;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    margin-bottom: $space-4;
+  }
+
+  .auth-form {
+    gap: $space-4;
+  }
+
+  .auth-form input {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .auth-submit {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .auth-footer {
+    font-size: 12px;
+  }
+}
+@media (min-width: 577px) and (max-width: 992px) {
+  .auth-modal {
+    width: 85%;
+    max-width: 480px;
+    padding: $space-8;
+  }
 }

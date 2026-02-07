@@ -1,10 +1,24 @@
-@use '../../variables' as *;
+@use "../../variables" as *;
 
 .login-container {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
-  color: $text-primary;
-  width: 80vw;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-panel {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: linear-gradient(135deg, #0f3c8c 0%, #1a5eb8 100%);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  gap: 3rem;
 }
 
 .login-left {
@@ -12,7 +26,10 @@
   padding: 4rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 8rem;
+  border-radius: 24px;
+  align-self: center;
 }
 
 .login-logo {
@@ -71,11 +88,14 @@
 
 .login-card {
   width: 100%;
-  max-width: 420px;
+  max-width: 450px;
   background: $bg-surface;
   padding: $space-10;
   border-radius: $radius-xl;
   box-shadow: $shadow-card;
+  background: rgba(15, 30, 70, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .card-subtitle {
@@ -164,13 +184,73 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
   .login-container {
     flex-direction: column;
+    align-items: center;
+  }
+
+  .login-panel {
+    grid-template-columns: 1fr;
   }
 
   .login-left {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    width: 90%;
+  }
+
+  .login-right {
+    padding: 0.5rem;
+  }
+
+  .features {
+    display: none;
+  }
+
+  .login-logo {
+    width: 70px;
+    margin: 0 auto $space-4;
+  }
+
+  .login-card {
+    max-width: 100%;
+    padding: $space-7;
+  }
+
+  .login-button-page {
+    width: 100%;
+  }
+
+  .password-field input {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 1024px) {
+  .login-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-left {
+    padding: $space-8;
     text-align: center;
-    padding: 2rem;
+  }
+
+  .features {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .login-right {
+    width: 100%;
+  }
+
+  .login-card {
+    max-width: 500px;
+    margin: 0 auto;
   }
 }

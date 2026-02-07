@@ -2,8 +2,9 @@
 
 .new-list {
   padding: $space-5;
-  width: 80vw;
-  justify-self: center;
+  max-width: 80vw;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .new-list__grid {
@@ -52,4 +53,36 @@
 
 .pop-up {
   color: $text-dim;
+}
+
+@media (max-width: 576px) {
+  .new-list {
+    width: 95vw;
+    padding: $space-4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .new-list__grid {
+    grid-template-columns: 1fr;
+    gap: $space-4;
+  }
+
+  .auth-popup__content {
+    width: 90%;
+    max-width: 90%;
+    padding: $space-5;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 992px) {
+  .new-list {
+    width: 90vw;
+  }
+
+  .new-list__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: $space-5;
+  }
 }

@@ -19,7 +19,7 @@ export default function AuthModal({ isOpen, onClose }) {
     onClose();
     navigate("/signup");
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
