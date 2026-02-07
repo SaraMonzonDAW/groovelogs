@@ -1,14 +1,11 @@
 @use '../../variables' as *;
 
 .results-grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: $space-6;
-    list-style: none;
-    padding: 0;
-    margin-top: $space-12;
-    width: 80vw;
-    height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: $space-6;
+  list-style: none;
+  padding: 0;
 }
 .filter-buttons {
   display: flex;
