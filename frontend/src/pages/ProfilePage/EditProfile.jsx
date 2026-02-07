@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { authFetch } from "../../services/authFetch";
 import "./EditProfile.scss";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function EditProfile() {
   const navigate = useNavigate();
 
@@ -16,7 +18,7 @@ export default function EditProfile() {
 
   useEffect(() => {
     const loadProfile = async () => {
-      const res = await authFetch("http://localhost:8080/api/usuarios/me");
+      const res = await authFetch(`${API_URL}/usuarios/me`);
       const data = await res.json();
 
       setFormData({
@@ -38,8 +40,11 @@ export default function EditProfile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await authFetch("http://localhost:8080/api/usuarios/me", {
+    await authFetch(`${API_URL}/usuarios/me`, {
       method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         nombre: formData.nombre,
         apellidos: formData.apellidos,
@@ -47,6 +52,8 @@ export default function EditProfile() {
         favoriteArtist: formData.favoriteArtist,
       }),
     });
+
+    await refreshUser();
 
     navigate("/profile");
   };

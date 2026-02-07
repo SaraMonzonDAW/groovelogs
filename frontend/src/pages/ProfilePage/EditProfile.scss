@@ -88,3 +88,77 @@
     }
   }
 }
+
+@media (max-width: 1024px) {
+  .profile-form-card {
+    max-width: 450px;
+    padding: 2rem 2.5rem;
+  }
+
+  .profile-form-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .profile-form-card form {
+    gap: 1.2rem;
+  }
+
+  .profile-form-card label {
+    font-size: 0.8rem;
+  }
+
+  .profile-form-card input {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .form-actions button {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-form-overlay {
+    padding: 1rem;
+  }
+
+  .profile-form-card {
+    max-width: 100%;
+    padding: 1.5rem 1.8rem;
+    border-radius: 12px;
+  }
+
+  .profile-form-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .profile-form-card form {
+    gap: 1rem;
+  }
+
+  .profile-form-card label {
+    font-size: 0.75rem;
+  }
+
+  .profile-form-card input {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+  }
+
+  .form-actions button {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
+}

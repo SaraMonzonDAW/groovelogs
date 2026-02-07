@@ -40,29 +40,29 @@ export default function ProfileData() {
           className="profileData-card profileData-card-btn"
           onClick={() => handleCardClick("favorites")}
         >
-          <img src={Heart} alt="Favorite" className="profileData-svg" />
+          <img src={Heart} alt="Favorite" className="profileData-svg heart-svg" />
           <div className="card-text">
             <span className="card-textStats">{favorites.length}</span>
             <span>Favoritos </span>
           </div>
-          <span className="card-arrow">→</span>
+          <span className="card-arrow">Ver favoritos</span>
         </button>
         <button
           className="profileData-card profileData-card-btn"
           onClick={() => handleCardClick("ratings")}
         >
-          <img src={Star} alt="Puntuaciones" className="profileData-svg" />
+          <img src={Star} alt="Puntuaciones" className="profileData-svg star-svg" />
           <div className="card-text">
             <span className="card-textStats">{totalRatings}</span>
             <span>Puntuaciones </span>
           </div>
-          <span className="card-arrow">→</span>
+          <span className="card-arrow">Ver puntuaciones</span>
         </button>
       </section>
 
       {selectedSection === "favorites" && (
         <section className="profile-section">
-          <h3>❤️ Mis Favoritos ({favorites.length})</h3>
+          <h3>Mis Favoritos ({favorites.length})</h3>
           <div className="profile-list">
             {favorites.map((favorite) => (
               <div key={favorite.id} className="profile-list-item">
@@ -80,7 +80,7 @@ export default function ProfileData() {
 
       {selectedSection === "ratings" && (
         <section className="profile-section">
-          <h3>⭐ Mis Puntuaciones ({ratings.length})</h3>
+          <h3>Mis Puntuaciones ({ratings.length})</h3>
           <div className="profile-list">
             {ratings.map((rating) => (
               <div key={rating.id} className="profile-list-item">
