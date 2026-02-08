@@ -6,9 +6,7 @@ import Logo from "../../assets/logo.png";
 import Logout from "../../assets/exit.svg";
 
 function Header() {
-  const { isAuthenticated, user, logout } = useAuth();
-  console.log(user, 'USUARIOS');
-  
+  const { isAuthenticated, user, logout, isAdmin } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = () => navigate("/login");
@@ -34,9 +32,20 @@ function Header() {
         </button>
       ) : (
         <div className="user-info">
+          {isAdmin && (
+            <button
+              className="admin-button"
+              onClick={() => navigate("/admin")}
+            >
+              Admin
+            </button>
+          )}
           <div className="user-pill" onClick={handleProfile}>
             <div className="user-text">
-              <span className="username">{user?.displayName}</span>
+              <span className="username">
+                {user?.displayName}
+                {isAdmin && <span className="admin-badge">ADMIN</span>}
+              </span>
               <span className="email">{user?.email}</span>
             </div>
           </div>

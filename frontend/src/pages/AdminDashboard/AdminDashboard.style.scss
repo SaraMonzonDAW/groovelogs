@@ -1,0 +1,31 @@
+.admin-dashboard {
+  width: 80vw;
+  margin: 4rem auto;
+  color: white;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.delete-btn {
+  background: #ff4d4f;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #d9363e;
+}

@@ -9,6 +9,7 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
+  const isAdmin = user?.rol === "ADMIN";
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -32,6 +33,7 @@ export function AuthProvider({ children }) {
       email: data.email,
       displayName: data.displayName,
       favoriteArtist: data.favoriteArtist,
+      rol: data.rol,
     });
   };
 
@@ -59,6 +61,7 @@ export function AuthProvider({ children }) {
         token,
         user,
         isAuthenticated: !!token,
+        isAdmin,
         login,
         logout,
         refreshUser,

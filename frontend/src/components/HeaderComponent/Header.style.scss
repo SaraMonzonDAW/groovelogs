@@ -46,6 +46,26 @@ a {
   @include smooth-transition();
 }
 
+.admin-button {
+  background: #ffb703;
+  color: #111;
+  border: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.admin-badge {
+  margin-left: 0.5rem;
+  font-size: 0.7rem;
+  background: linear-gradient(90deg, #ffb703, #ff8800);
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
 .login-button:hover {
   opacity: 0.9;
 }

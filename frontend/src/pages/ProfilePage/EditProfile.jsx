@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authFetch } from "../../services/authFetch";
+import { useAuth } from "../../context/AuthContext";
 import "./EditProfile.scss";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default function EditProfile() {
+  const { refreshUser } = useAuth();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({

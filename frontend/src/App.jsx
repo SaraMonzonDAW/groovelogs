@@ -2,6 +2,8 @@ import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "./context/AuthContext";
 import AuthModal from "./components/AuthModalComponent/AuthModal";
+import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
+import AdminRoute from "./routes/AdminRoute";
 import Header from "./components/HeaderComponent/Header";
 import Discover from "./pages/DiscoverPage/Discover";
 import Signup from "./pages/SignupPage/SignupPage";
@@ -55,8 +57,15 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
+            }
+          />
         </Routes>
-
         <AuthModal isOpen={isAuthOpen} onClose={closeModal} />
       </main>
     </>

@@ -6,6 +6,8 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -48,6 +50,11 @@ public class Usuario {
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Rol rol = Rol.USER;
+
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Favorito> favoritos = new ArrayList<>();
@@ -158,5 +165,13 @@ public class Usuario {
 		this.favoritos = favoritos;
 	}
 
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+	
 }
 

@@ -70,6 +70,16 @@ public class UsuarioService {
         usuario.setDeletedAt(LocalDateTime.now());
         usuarioRepository.save(usuario);
     }
+    
+    public void eliminarUsuarioPorId(Long id) {
+        Usuario usuario = usuarioRepository
+            .findById(id)
+            .orElseThrow();
+
+        usuario.setDeletedAt(LocalDateTime.now());
+        usuarioRepository.save(usuario);
+    }
+
 
     public List<Usuario> obtenerTodos() {
         return usuarioRepository.findAll();
