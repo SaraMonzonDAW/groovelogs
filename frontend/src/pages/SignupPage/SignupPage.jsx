@@ -5,6 +5,8 @@ import { useState } from "react";
 import eyeOpen from "../../assets/eye-open.svg";
 import eyeClosed from "../../assets/eye-closed.svg";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function Signup() {
   const navigate = useNavigate();
 
@@ -65,7 +67,7 @@ export default function Signup() {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/api/auth/register",
+        `${API_URL}/auth/register`,
         {
           method: "POST",
           headers: {
