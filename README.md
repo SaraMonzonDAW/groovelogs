@@ -57,6 +57,10 @@ groovelogs/
 `mvn clean package -DskipTests`
 `java -jar target/GrooveLogs-0.0.1-SNAPSHOT.jar`
 
+Acceso al Swagger-UI 
+
+https://groovelogs.onrender.com/swagger-ui/index.html
+
 ### Frontend
 
 `cd frontend`
@@ -73,4 +77,5 @@ Ciclo Formativo de Grado Superior – Desarrollo de Aplicaciones Web (DAW)
 ## 📌 Estado del proyecto
 
 🚧 En desarrollo  
+
 Se irán incorporando nuevas funcionalidades y mejoras progresivamente.
