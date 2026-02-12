@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.groovelogs.entities.Usuario;
 import com.groovelogs.repositories.UsuarioRepository;
 
 @Service
+@Transactional
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
@@ -45,7 +47,7 @@ public class UsuarioService {
                 new RuntimeException("Usuario no encontrado")
             );
     }
-
+    
     public Usuario actualizarPerfil(String email, Usuario datos) {
 
         Usuario u = buscarPorEmail(email);

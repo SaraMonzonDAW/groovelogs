@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.groovelogs.entities.Rating;
 import com.groovelogs.entities.Usuario;
@@ -18,6 +19,7 @@ public class RatingService {
         this.ratingRepository = ratingRepository;
     }
 
+    @Transactional
     public Rating guardarRating(Usuario usuario, Rating rating) {
     	 Rating r = ratingRepository
 	        .findByUsuarioAndDiscogsIdAndTipo(

@@ -1,5 +1,7 @@
 package com.groovelogs.services;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -7,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.groovelogs.entities.Favorito;
 import com.groovelogs.entities.Usuario;
 import com.groovelogs.repositories.FavoriteRepository;
-
 @Service
 public class FavoriteService {
 
@@ -16,7 +17,7 @@ public class FavoriteService {
     public FavoriteService(FavoriteRepository favoriteRepository) {
         this.favoriteRepository = favoriteRepository;
     }
-
+    @Transactional
     public Favorito guardarFavorito(Usuario usuario, Favorito favorito) {
 
         favoriteRepository
@@ -37,6 +38,7 @@ public class FavoriteService {
         return favoriteRepository.findByUsuario(usuario);
     }
 
+    @Transactional
     public void eliminarFavorito(
         Usuario usuario,
         Long discogsId,

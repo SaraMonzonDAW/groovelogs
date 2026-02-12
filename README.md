@@ -26,6 +26,12 @@ groovelogs/
 ├── backend/    → API REST desarrollada con Spring Boot
 └── frontend/   → Aplicación web desarrollada con React
 
+## 📖 Documentación técnica
+
+La documentación interna del backend se encuentra en la carpeta `/docs`:
+
+- [Capa de Servicios](docs/services.md)
+
 ### :computer:Backend
 	-   Spring Boot  
 	-   API REST
