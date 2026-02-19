@@ -85,7 +85,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 	    config.setAllowedHeaders(List.of("*"));
 
-	    config.setAllowCredentials(true);
+	    config.setAllowCredentials(false);
 
 	    UrlBasedCorsConfigurationSource source =
 	        new UrlBasedCorsConfigurationSource();
@@ -94,4 +94,5 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 	    return source;
 	}
+
 }
