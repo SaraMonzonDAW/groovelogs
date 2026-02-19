@@ -48,8 +48,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 		).permitAll()
 	
 		.requestMatchers(
-		"/api/auth/login",
-		"/api/auth/register"
+		"/api/auth/**"
 		).permitAll()
 		
 		.requestMatchers("/api/discogs/**").permitAll()
@@ -96,3 +95,4 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 	}
 
 }
+
