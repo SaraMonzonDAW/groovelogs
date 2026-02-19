@@ -2,7 +2,6 @@ package com.groovelogs.security;
 
 import java.util.List;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -55,9 +54,22 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 		
 		.requestMatchers("/api/admin/**").hasRole("ADMIN")
 		.requestMatchers("/api/usuarios/**").hasAnyRole("USER", "ADMIN")
-
+		.requestMatchers("/api/favoritos/**").hasAnyRole("USER", "ADMIN")
+		.requestMatchers("/api/ratings/**").hasAnyRole("USER", "ADMIN")
 
 		.anyRequest().authenticated()
+		)
+		.exceptionHandling(exceptions -> exceptions
+		.authenticationEntryPoint((request, response, authException) -> {
+			response.setStatus(401);
+			response.setContentType("application/json");
+			response.getWriter().write("{\"error\":\"Unauthorized\"}");
+		})
+		.accessDeniedHandler((request, response, accessDeniedException) -> {
+			response.setStatus(403);
+			response.setContentType("application/json");
+			response.getWriter().write("{\"error\":\"Access Denied\"}");
+		})
 		)
 		.addFilterBefore(
 		jwtAuthenticationFilter,
@@ -82,9 +94,17 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 	        List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
 	    );
 
-	    config.setAllowedHeaders(List.of("*"));
+	    config.setAllowedHeaders(List.of(
+	        "Content-Type",
+	        "Authorization",
+	        "X-Requested-With"
+	    ));
+
+	    config.setExposedHeaders(List.of("*"));
 
 	    config.setAllowCredentials(false);
+
+	    config.setMaxAge(3600L);
 
 	    UrlBasedCorsConfigurationSource source =
 	        new UrlBasedCorsConfigurationSource();
