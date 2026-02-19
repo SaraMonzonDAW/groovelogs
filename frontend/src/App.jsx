@@ -19,6 +19,15 @@ function App() {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const { isAuthenticated } = useAuth();
 
+  // Handle GitHub Pages 404.html redirect for SPA routing
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const redirect = params.get('/');
+    if (redirect) {
+      navigate('/' + redirect.replace(/~and~/g, '&'), { replace: true });
+    }
+  }, []);
+
   useEffect(() => {
     if (location.pathname === "/login" && !isAuthenticated) {
       setIsAuthOpen(true);
