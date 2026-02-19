@@ -11,6 +11,7 @@ import com.groovelogs.entities.Usuario;
 import com.groovelogs.repositories.RatingRepository;
 
 @Service
+@Transactional
 public class RatingService {
 
     private final RatingRepository ratingRepository;
@@ -19,7 +20,6 @@ public class RatingService {
         this.ratingRepository = ratingRepository;
     }
 
-    @Transactional
     public Rating guardarRating(Usuario usuario, Rating rating) {
     	 Rating r = ratingRepository
 	        .findByUsuarioAndDiscogsIdAndTipo(

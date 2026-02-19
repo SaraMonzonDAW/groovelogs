@@ -11,6 +11,7 @@ import SignupSuccess from "./pages/SignupSuccess/SignupSuccess";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Profile from "./pages/ProfilePage/Profile";
 import EditProfile from "./pages/ProfilePage/EditProfile";
+import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 
 function App() {
   const location = useLocation();
@@ -65,6 +66,7 @@ function App() {
               </AdminRoute>
             }
           />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} target="_blank" />
         </Routes>
         <AuthModal isOpen={isAuthOpen} onClose={closeModal} />
       </main>

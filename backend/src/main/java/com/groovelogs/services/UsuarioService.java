@@ -36,6 +36,7 @@ public class UsuarioService {
             passwordEncoder.encode(usuario.getPassword());
 
         usuario.setPassword(passwordCifrada);
+        usuario.setPrivacyAcceptedAt(LocalDateTime.now());
 
         return usuarioRepository.save(usuario);
     }

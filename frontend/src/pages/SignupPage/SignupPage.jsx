@@ -19,12 +19,11 @@ export default function Signup() {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const cleanText = (text) =>
-    text.trim().replace(/\s+/g, " ");
+  const cleanText = (text) => text.trim().replace(/\s+/g, " ");
 
   const handleChange = (e) => {
     setFormData({
@@ -54,6 +53,11 @@ export default function Signup() {
       return false;
     }
 
+    if (!acceptedPrivacy) {
+      setError("Debes aceptar la política de privacidad");
+      return false;
+    }
+
     return true;
   };
 
@@ -66,20 +70,17 @@ export default function Signup() {
     setLoading(true);
 
     try {
-      const response = await fetch(
-        `${API_URL}/auth/register`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nombre: cleanText(formData.nombre),
-            email: formData.email.trim().toLowerCase(),
-            password: formData.password,
-          }),
-        }
-      );
+      const response = await fetch(`${API_URL}/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nombre: cleanText(formData.nombre),
+          email: formData.email.trim().toLowerCase(),
+          password: formData.password,
+        }),
+      });
 
       const data = await response.json();
 
@@ -92,7 +93,6 @@ export default function Signup() {
       navigate("/signup-success", {
         state: { email: formData.email },
       });
-
     } catch (err) {
       setError("No se pudo crear la cuenta. Inténtalo más tarde.");
     } finally {
@@ -102,115 +102,128 @@ export default function Signup() {
 
   return (
     <div className="login-container">
-        <div className="login-panel">
-      <div className="login-left">
-        <h1>GrooveLogs</h1>
-        <p className="subtitle">Tu plataforma musical definitiva</p>
+      <div className="login-panel">
+        <div className="login-left">
+          <h1>GrooveLogs</h1>
+          <p className="subtitle">Tu plataforma musical definitiva</p>
 
-        <div className="features">
-          <div className="feature">
-            <strong>Miles de canciones</strong>
-            <p>Explora música de todos los géneros</p>
-          </div>
-          <div className="feature">
-            <strong>Puntúa música</strong>
-            <p>Califica tus canciones favoritas</p>
-          </div>
-          <div className="feature">
-            <strong>Crea favoritos</strong>
-            <p>Guarda tu música preferida</p>
+          <div className="features">
+            <div className="feature">
+              <strong>Miles de canciones</strong>
+              <p>Explora música de todos los géneros</p>
+            </div>
+            <div className="feature">
+              <strong>Puntúa música</strong>
+              <p>Califica tus canciones favoritas</p>
+            </div>
+            <div className="feature">
+              <strong>Crea favoritos</strong>
+              <p>Guarda tu música preferida</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="login-right">
-        <div className="login-card">
-          <h2>Únete a GrooveLogs</h2>
-          <p className="card-subtitle">
-            Crea tu cuenta y descubre nueva música
-          </p>
-          <form className="login-form" onSubmit={handleSubmit}>
-            <label>
-              Nombre completo
-              <input
-                type="text"
-                name="nombre"
-                value={formData.nombre}
-                onChange={handleChange}
-                required
-                maxLength={50}
-              />
-            </label>
-            <label>
-              Email
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Contraseña
-              <div className="password-field">
+        <div className="login-right">
+          <div className="login-card">
+            <h2>Únete a GrooveLogs</h2>
+            <p className="card-subtitle">
+              Crea tu cuenta y descubre nueva música
+            </p>
+            <form className="login-form" onSubmit={handleSubmit}>
+              <label>
+                Nombre completo
                 <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={formData.password}
+                  type="text"
+                  name="nombre"
+                  value={formData.nombre}
                   onChange={handleChange}
                   required
-                  minLength={8}
+                  maxLength={50}
                 />
-                <button
-                  type="button"
-                  className="eye-button"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  <img src={showPassword ? eyeOpen : eyeClosed} alt="toggle password" />
-                </button>
-              </div>
-            </label>
-            <label>
-              Confirmar contraseña
-              <div className="password-field">
+              </label>
+              <label>
+                Email
                 <input
-                  type={showConfirmPassword ? "text" : "password"}
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
+                  type="email"
+                  name="email"
+                  value={formData.email}
                   onChange={handleChange}
                   required
                 />
-                <button
-                  type="button"
-                  className="eye-button"
-                  onClick={() =>
-                    setShowConfirmPassword(!showConfirmPassword)
-                  }
-                >
-                  <img src={showConfirmPassword ? eyeOpen : eyeClosed} alt="toggle password" />
-                </button>
-              </div>
-            </label>
+              </label>
+              <label>
+                Contraseña
+                <div className="password-field">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                    minLength={8}
+                  />
+                  <button
+                    type="button"
+                    className="eye-button"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    <img
+                      src={showPassword ? eyeOpen : eyeClosed}
+                      alt="toggle password"
+                    />
+                  </button>
+                </div>
+              </label>
+              <label>
+                Confirmar contraseña
+                <div className="password-field">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="eye-button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    <img
+                      src={showConfirmPassword ? eyeOpen : eyeClosed}
+                      alt="toggle password"
+                    />
+                  </button>
+                </div>
+              </label>
+              <label className="privacy-checkbox">
+                <input
+                  type="checkbox"
+                  checked={acceptedPrivacy}
+                  onChange={(e) => setAcceptedPrivacy(e.target.checked)}
+                  required
+                />
+                Acepto la{" "}
+                <Link to="/privacy-policy" target="_blank">
+                  política de privacidad
+                </Link>
+              </label>
+              {error && <p className="error">{error}</p>}
 
-            {error && <p className="error">{error}</p>}
+              <button
+                type="submit"
+                className="login-button-page"
+                disabled={loading}
+              >
+                {loading ? "Creando cuenta..." : "Crear cuenta"}
+              </button>
+            </form>
 
-            <button
-              type="submit"
-              className="login-button-page"
-              disabled={loading}
-            >
-              {loading ? "Creando cuenta..." : "Crear cuenta"}
-            </button>
-          </form>
-
-          <p className="register-link">
-            ¿Ya tienes una cuenta?{" "}
-            <Link to="/login">Inicia sesión</Link>
-          </p>
+            <p className="register-link">
+              ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
+            </p>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );
 }
-

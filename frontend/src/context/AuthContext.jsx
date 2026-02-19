@@ -25,8 +25,15 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-  const loadProfile = async () => {
+const loadProfile = async () => {
+  try {
     const res = await authFetch(`${API_URL}/usuarios/me`);
+
+    if (res.status === 401) {
+      logout();
+      return;
+    }
+
     const data = await res.json();
 
     setUser({
@@ -35,7 +42,12 @@ export function AuthProvider({ children }) {
       favoriteArtist: data.favoriteArtist,
       rol: data.rol,
     });
-  };
+
+  } catch (error) {
+    logout();
+  }
+};
+
 
   const login = async (jwt) => {
     localStorage.setItem("token", jwt);

@@ -51,6 +51,9 @@ public class Usuario {
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
     
+    @Column(name = "privacy_accepted_at")
+    private LocalDateTime privacyAcceptedAt;
+    
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Rol rol = Rol.USER;
@@ -172,6 +175,15 @@ public class Usuario {
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
+	
+	public LocalDateTime getPrivacyAcceptedAt() {
+	    return privacyAcceptedAt;
+	}
+
+	public void setPrivacyAcceptedAt(LocalDateTime privacyAcceptedAt) {
+	    this.privacyAcceptedAt = privacyAcceptedAt;
+	}
+
 	
 }
 
