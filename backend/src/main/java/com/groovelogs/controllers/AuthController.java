@@ -15,7 +15,10 @@ import com.groovelogs.services.UsuarioService;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+    "http://localhost:5173",
+    "https://saramonzondaw.github.io"
+})
 public class AuthController {
 
     private final UsuarioService usuarioService;
@@ -68,4 +71,5 @@ public class AuthController {
 
         return ResponseEntity.ok(new LoginResponse(token));
     }
+
 }
