@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import AlbumCard from "../AlbumCardComponent/AlbumCard";
 import "./ResultList.style.scss";
 import AuthModal from "../AuthModalComponent/AuthModal";
+import Spinner from "../Spinner/Spinner";
 
 const FILTERS = [
   { label: "Todo", value: "all" },
@@ -25,7 +26,7 @@ export default function ResultsList({ results, loading, searchQuery }) {
     return results.filter((item) => item.type === activeFilter);
   }, [results, activeFilter]);
 
-  if (loading) return <p className="results-message">Cargando resultados…</p>;
+  if (loading) return <Spinner />;
 
   if (!results.length) {
     return (

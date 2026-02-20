@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllUsers, deleteUserById } from "../../services/adminApi";
+import Spinner from "../../components/Spinner/Spinner";
 import "./AdminDashboard.style.scss";
 
 export default function AdminDashboard() {
@@ -24,7 +25,7 @@ export default function AdminDashboard() {
     setUsers((prev) => prev.filter((u) => u.id !== id));
   };
 
-  if (loading) return <p>Cargando usuarios...</p>;
+  if (loading) return <Spinner />;
 
   return (
     <div className="admin-dashboard">

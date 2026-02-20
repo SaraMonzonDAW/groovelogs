@@ -173,6 +173,15 @@
   background: linear-gradient(135deg, #2563eb, #38bdf8);
 }
 
+.privacy-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  }
+
+.privacy-checkbox input {
+  margin: 0;
+}
 .register-link {
   margin-top: 1.5rem;
   text-align: center;
@@ -184,6 +193,11 @@
   }
 }
 
+.privacy-policyLink{
+  color: #38bdf8;
+  text-decoration: none;
+  cursor: pointer;
+}
 @media (max-width: 576px) {
   .login-container {
     flex-direction: column;

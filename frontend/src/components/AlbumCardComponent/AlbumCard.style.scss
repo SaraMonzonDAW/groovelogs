@@ -1,7 +1,7 @@
 @use '../../variables' as *;
 
 .album-card {
-  width: 260px;
+  width: 250px;
   border-radius: $radius-xl;
   overflow: hidden;
   background: linear-gradient(180deg, #1e3c72, #2a5298);
@@ -15,10 +15,7 @@
 }
 
 .album-card__image {
-  height: 280px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
+  width: 250px;
 }
 
 .album-card__favorite {
