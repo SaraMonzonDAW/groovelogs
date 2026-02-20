@@ -73,6 +73,12 @@ public class UsuarioService {
         usuario.setDeletedAt(LocalDateTime.now());
         usuarioRepository.save(usuario);
     }
+
+    public void registrarLogin(String email) {
+        Usuario usuario = buscarPorEmail(email);
+        usuario.setLastLoginAt(LocalDateTime.now());
+        usuarioRepository.save(usuario);
+    }
     
     public void eliminarUsuarioPorId(Long id) {
         Usuario usuario = usuarioRepository

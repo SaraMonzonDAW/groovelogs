@@ -25,6 +25,12 @@ export default function AdminDashboard() {
     setUsers((prev) => prev.filter((u) => u.id !== id));
   };
 
+  const formatDate = (dateString) => {
+    if (!dateString) return "—";
+    const date = new Date(dateString);
+    return date.toLocaleString("es-ES");
+  };
+
   if (loading) return <Spinner />;
 
   return (
@@ -38,6 +44,8 @@ export default function AdminDashboard() {
             <th>Email</th>
             <th>Nombre</th>
             <th>Rol</th>
+            <th>Último Login</th>
+            <th>Última Modificación</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -48,6 +56,8 @@ export default function AdminDashboard() {
               <td>{user.email}</td>
               <td>{user.displayName}</td>
               <td>{user.rol}</td>
+              <td>{formatDate(user.lastLoginAt)}</td>
+              <td>{formatDate(user.updatedAt)}</td>
               <td>
                 <button
                   className="delete-btn"
