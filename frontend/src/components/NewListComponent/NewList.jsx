@@ -3,6 +3,7 @@ import { getBestSelling } from "../../services/getBestSelling";
 import AlbumCard from "../AlbumCardComponent/AlbumCard";
 import "./NewList.style.scss";
 import AuthModal from "../AuthModalComponent/AuthModal";
+import Spinner from "../Spinner/Spinner";
 
 export default function NewList() {
   const [bestSellings, setBestSellings] = useState([]);
@@ -26,7 +27,7 @@ export default function NewList() {
     load();
   }, []);
 
-  if (loading) return <p>Cargando rankings…</p>;
+  if (loading) return <Spinner />;
 
   return (
     <>
@@ -34,18 +35,24 @@ export default function NewList() {
         <h2>Últimos lanzamientos</h2>
 
         <ul className="new-list__grid">
-          {bestSellings.map((item) => (
+          {bestSellings.map((item, index) => (
             <AlbumCard
               key={item.id}
               item={item}
               isLoggedIn={isLoggedIn}
               onRequireAuth={() => setShowAuthPopup(true)}
+              index={index}
             />
           ))}
         </ul>
       </section>
 
-      {showAuthPopup && <AuthModal isOpen={showAuthPopup} onClose={() => setShowAuthPopup(false)} />}
+      {showAuthPopup && (
+        <AuthModal
+          isOpen={showAuthPopup}
+          onClose={() => setShowAuthPopup(false)}
+        />
+      )}
     </>
   );
 }

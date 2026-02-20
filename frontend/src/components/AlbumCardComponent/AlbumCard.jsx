@@ -8,8 +8,9 @@ import { getAverage, rateItem, getMyRating } from "../../services/ratingApi";
 import Heart from "../../assets/heart.svg";
 import "./AlbumCard.style.scss";
 import { useAuth } from "../../context/AuthContext";
+import Placeholder from "../../assets/placeholder.png";
 
-export default function AlbumCard({ item, searchTrack, onRequireAuth }) {
+export default function AlbumCard({ item, searchTrack, onRequireAuth, index }) {
   const { isAuthenticated } = useAuth();
 
   const [rating, setRating] = useState(0);
@@ -35,10 +36,15 @@ export default function AlbumCard({ item, searchTrack, onRequireAuth }) {
   }, [isAuthenticated, item.id]);
 
   useEffect(() => {
+    if (!isAuthenticated) {
+      setAverage(0);
+      return;
+    }
+
     getAverage(item.id, "album")
       .then((data) => setAverage(data.media))
       .catch(() => setAverage(0));
-  }, [item.id]);
+  }, [isAuthenticated, item.id]);
 
   function handleRate(value) {
     if (!isAuthenticated) {
@@ -91,12 +97,32 @@ export default function AlbumCard({ item, searchTrack, onRequireAuth }) {
     }
   }
 
+  function getValidImage(url) {
+    if (!url) return Placeholder;
+
+    const cleanUrl = url.split("?")[0].toLowerCase();
+
+    if (cleanUrl.endsWith(".jpeg")) {
+      return url;
+    }
+
+    return Placeholder;
+  }
+
   return (
     <li className="album-card">
-      <div
-        className="album-card__image"
-        style={{ backgroundImage: `url(${item.cover_image})` }}
-      >
+      <div className="album-card__image">
+        <img
+          src={getValidImage(item.cover_image)}
+          alt={title}
+          width="250"
+          height="250"
+          loading={index === 0 ? "eager" : "lazy"}
+          fetchPriority={index === 0 ? "high" : "auto"}
+          onError={(e) => {
+            e.currentTarget.src = Placeholder;
+          }}
+        />
         <button
           className={`album-card__favorite ${isFavorite ? "is-active" : ""}`}
           onClick={handleFavorite}

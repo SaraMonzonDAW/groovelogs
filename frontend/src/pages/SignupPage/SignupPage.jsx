@@ -44,8 +44,14 @@ export default function Signup() {
     }
 
     if (formData.password.length < 8) {
-      setError("La contraseña debe tener al menos 8 caracteres");
-      return false;
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{8,}$/;
+
+      if (!passwordRegex.test(formData.password)) {
+        setError(
+          "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un carácter especial",
+        );
+        return false;
+      }
     }
 
     if (formData.password !== formData.confirmPassword) {
@@ -160,6 +166,8 @@ export default function Signup() {
                     onChange={handleChange}
                     required
                     minLength={8}
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{8,}$"
+                    title="Debe tener al menos 8 caracteres, una mayúscula, una minúscula y un carácter especial"
                   />
                   <button
                     type="button"
@@ -182,6 +190,8 @@ export default function Signup() {
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     required
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{8,}$"
+                    title="Debe tener al menos 8 caracteres, una mayúscula, una minúscula y un carácter especial"
                   />
                   <button
                     type="button"
@@ -202,10 +212,12 @@ export default function Signup() {
                   onChange={(e) => setAcceptedPrivacy(e.target.checked)}
                   required
                 />
-                Acepto la{" "}
-                <Link to="/privacy-policy" target="_blank">
-                  política de privacidad
-                </Link>
+                <span>
+                  Acepto la{" "}
+                  <Link to="/privacy-policy" target="_blank" className="privacy-policyLink">
+                    política de privacidad
+                  </Link>
+                </span>
               </label>
               {error && <p className="error">{error}</p>}
 

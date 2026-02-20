@@ -11,6 +11,10 @@ export async function rateItem(rating) {
     body: JSON.stringify(rating),
   });
 
+ if (res.status === 401) {
+    return null;
+  }
+
   if (!res.ok) throw new Error("Error rating");
   return res.json();
 }
@@ -28,6 +32,8 @@ export async function getMyRating(discogsId, tipo) {
   const res = await authFetch(
     `${API_URL}/me?discogsId=${discogsId}&tipo=${tipo}`
   );
+  
+  if (res.status === 401) return [];
 
   if (!res.ok) throw new Error("Error loading rating");
   return res.json();
@@ -35,6 +41,7 @@ export async function getMyRating(discogsId, tipo) {
 
 export async function getTotalRatings() {
   const res = await authFetch(`${API_URL}/me/count`);
+  if (res.status === 401) return { total: 0 };
 
   if (!res.ok) throw new Error("Error loading total ratings");
   return res.json();
