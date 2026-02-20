@@ -54,6 +54,9 @@ public class Usuario {
     @Column(name = "privacy_accepted_at")
     private LocalDateTime privacyAcceptedAt;
     
+    @Column(name = "last_login_at")
+    private LocalDateTime lastLoginAt;
+    
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Rol rol = Rol.USER;
@@ -182,6 +185,14 @@ public class Usuario {
 
 	public void setPrivacyAcceptedAt(LocalDateTime privacyAcceptedAt) {
 	    this.privacyAcceptedAt = privacyAcceptedAt;
+	}
+
+	public LocalDateTime getLastLoginAt() {
+	    return lastLoginAt;
+	}
+
+	public void setLastLoginAt(LocalDateTime lastLoginAt) {
+	    this.lastLoginAt = lastLoginAt;
 	}
 
 	
