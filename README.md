@@ -6,18 +6,14 @@ El proyecto sigue una arquitectura **cliente-servidor**, separando frontend y ba
 
 ## Funcionalidades principales
 
--   Búsqueda de canciones, álbumes y artistas mediante una API externa de información musical.
-    
--   Registro de usuarios en la aplicación.
-    
--   Autenticación de usuarios.
-    
--   Gestión de favoritos (añadir y eliminar).
-    
--   Puntuación de contenidos musicales (0–5).
-    
--   Persistencia de datos en base de datos relacional.
-
+- Búsqueda de canciones, álbumes y artistas mediante API externa (Discogs).
+- Registro de usuarios.
+- Autenticación mediante JWT.
+- Gestión de favoritos (añadir y eliminar).
+- Valoración de contenidos musicales (0–5).
+- Persistencia de datos en base de datos relacional.
+- Control de acceso por roles (USER / ADMIN).
+- Diseño responsive y enfoque PWA.
 
 ## Arquitectura del proyecto
 
@@ -26,23 +22,44 @@ groovelogs/
 ├── backend/    → API REST desarrollada con Spring Boot
 └── frontend/   → Aplicación web desarrollada con React
 
+Se aplica una arquitectura en capas en el backend:
+
+```
+Controller → Service → Repository → Base de Datos
+``` 
+
 ## 📖 Documentación técnica
 
 La documentación interna del backend se encuentra en la carpeta `/docs`:
 
-- [Capa de Servicios](docs/services.md)
+- [Capa de Services](docs/services.md)
+- [Capa de Entities](docs/entities.md)
+- [Capa de Security](docs/security.md)
+- [Capa de Repositories](docs/repositories.md)
+- [Capa de Controllers](docs/controllers.md)
 
 ### :computer:Backend
-	-   Spring Boot  
-	-   API REST
-	-   MySQL
-	-   Gestión de usuarios y persistencia de datos
+
+- Spring Boot
+- Spring Security + JWT
+- API REST
+- Postgresql
+- JPA / Hibernate
+- Swagger (documentación de endpoints)
+
+Swagger UI
+
+Disponible en:
+```
+https://groovelogs.onrender.com/swagger-ui/index.html
+```
     
 ### :iphone: Frontend
-	-   React
-	-   React Router
-	-   Diseño responsive
-	-  Consumo de la API REST del backend
+- React
+- React Router
+- Consumo de API REST
+- Diseño responsive
+- Arquitectura basada en componentes
 
 ## Instalación y ejecución en local
 
@@ -54,7 +71,7 @@ La documentación interna del backend se encuentra en la carpeta `/docs`:
     
 -   Maven
     
--   MySQL
+-   Postgresql 17
     
 
 ### Backend
@@ -63,15 +80,26 @@ La documentación interna del backend se encuentra en la carpeta `/docs`:
 `mvn clean package -DskipTests`
 `java -jar target/GrooveLogs-0.0.1-SNAPSHOT.jar`
 
-Acceso al Swagger-UI 
-
-https://groovelogs.onrender.com/swagger-ui/index.html
 
 ### Frontend
 
 `cd frontend`
 `npm install`
 `npm run dev`
+
+### Seguridad
+
+El sistema implementa:
+
+- Autenticación basada en JWT.
+
+- Arquitectura stateless (sin sesiones).
+
+- Protección de endpoints por roles.
+
+- Cifrado de contraseñas con BCrypt.
+
+- Validación de tokens en cada petición.
 
 
 ## Autor
