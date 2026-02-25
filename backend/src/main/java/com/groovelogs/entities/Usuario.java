@@ -6,14 +6,14 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "usuarios")
@@ -27,7 +27,10 @@ public class Usuario {
 
     private String nombre;
     private String email;
+
+    @JsonIgnore
     private String password;
+
     private String apellidos;
     private String displayName;
     private String favoriteArtist;
@@ -50,151 +53,68 @@ public class Usuario {
 
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
-    
+
     @Column(name = "privacy_accepted_at")
     private LocalDateTime privacyAcceptedAt;
-    
+
     @Column(name = "last_login_at")
     private LocalDateTime lastLoginAt;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Rol rol = Rol.USER;
 
-
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Favorito> favoritos = new ArrayList<>();
 
     public Usuario() {}
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getApellidos() { return apellidos; }
+    public void setApellidos(String apellidos) { this.apellidos = apellidos; }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getDisplayName() { return displayName; }
+    public void setDisplayName(String displayName) { this.displayName = displayName; }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getFavoriteArtist() { return favoriteArtist; }
+    public void setFavoriteArtist(String favoriteArtist) { this.favoriteArtist = favoriteArtist; }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
-	public String getApellidos() {
-		return apellidos;
-	}
+    public LocalDateTime getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
 
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
-	}
+    public String getCreatedBy() { return createdBy; }
+    public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
 
-	public String getDisplayName() {
-		return displayName;
-	}
+    public String getUpdatedBy() { return updatedBy; }
+    public void setUpdatedBy(String updatedBy) { this.updatedBy = updatedBy; }
 
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
-	}
+    public LocalDateTime getDeletedAt() { return deletedAt; }
+    public void setDeletedAt(LocalDateTime deletedAt) { this.deletedAt = deletedAt; }
 
-	public String getFavoriteArtist() {
-		return favoriteArtist;
-	}
+    public LocalDateTime getPrivacyAcceptedAt() { return privacyAcceptedAt; }
+    public void setPrivacyAcceptedAt(LocalDateTime privacyAcceptedAt) { this.privacyAcceptedAt = privacyAcceptedAt; }
 
-	public void setFavoriteArtist(String favoriteArtist) {
-		this.favoriteArtist = favoriteArtist;
-	}
+    public LocalDateTime getLastLoginAt() { return lastLoginAt; }
+    public void setLastLoginAt(LocalDateTime lastLoginAt) { this.lastLoginAt = lastLoginAt; }
 
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
+    public List<Favorito> getFavoritos() { return favoritos; }
+    public void setFavoritos(List<Favorito> favoritos) { this.favoritos = favoritos; }
 
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-
-	public LocalDateTime getDeletedAt() {
-		return deletedAt;
-	}
-
-	public void setDeletedAt(LocalDateTime deletedAt) {
-		this.deletedAt = deletedAt;
-	}
-
-	public List<Favorito> getFavoritos() {
-		return favoritos;
-	}
-
-	public void setFavoritos(List<Favorito> favoritos) {
-		this.favoritos = favoritos;
-	}
-
-	public Rol getRol() {
-		return rol;
-	}
-
-	public void setRol(Rol rol) {
-		this.rol = rol;
-	}
-	
-	public LocalDateTime getPrivacyAcceptedAt() {
-	    return privacyAcceptedAt;
-	}
-
-	public void setPrivacyAcceptedAt(LocalDateTime privacyAcceptedAt) {
-	    this.privacyAcceptedAt = privacyAcceptedAt;
-	}
-
-	public LocalDateTime getLastLoginAt() {
-	    return lastLoginAt;
-	}
-
-	public void setLastLoginAt(LocalDateTime lastLoginAt) {
-	    this.lastLoginAt = lastLoginAt;
-	}
-
-	
+    public Rol getRol() { return rol; }
+    public void setRol(Rol rol) { this.rol = rol; }
 }
-

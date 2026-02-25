@@ -88,6 +88,13 @@ export default function Signup() {
         }),
       });
 
+      if (!response.ok) {
+        const text = await response.text();
+        setError(text || "Error al crear la cuenta");
+        setLoading(false);
+        return;
+      }
+
       const data = await response.json();
 
       if (!response.ok) {
@@ -214,7 +221,11 @@ export default function Signup() {
                 />
                 <span>
                   Acepto la{" "}
-                  <Link to="/privacy-policy" target="_blank" className="privacy-policyLink">
+                  <Link
+                    to="/privacy-policy"
+                    target="_blank"
+                    className="privacy-policyLink"
+                  >
                     política de privacidad
                   </Link>
                 </span>

@@ -25,29 +25,33 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-const loadProfile = async () => {
-  try {
-    const res = await authFetch(`${API_URL}/usuarios/me`);
+  const loadProfile = async () => {
+    try {
+      const res = await authFetch(`${API_URL}/usuarios/me`);
 
-    if (res.status === 401) {
+      if (res.status === 401) {
+        logout();
+        return;
+      }
+
+      if (!res.ok) {
+        const text = await res.text();
+        console.error("Error response:", text);
+        throw new Error("Error en la petición");
+      }
+
+      const data = await res.json();
+
+      setUser({
+        email: data.email,
+        displayName: data.displayName,
+        favoriteArtist: data.favoriteArtist,
+        rol: data.rol,
+      });
+    } catch (error) {
       logout();
-      return;
     }
-
-    const data = await res.json();
-
-    setUser({
-      email: data.email,
-      displayName: data.displayName,
-      favoriteArtist: data.favoriteArtist,
-      rol: data.rol,
-    });
-
-  } catch (error) {
-    logout();
-  }
-};
-
+  };
 
   const login = async (jwt) => {
     localStorage.setItem("token", jwt);
@@ -62,9 +66,9 @@ const loadProfile = async () => {
   };
 
   const refreshUser = async () => {
-  if (!token) return;
+    if (!token) return;
 
-  await loadProfile(token);
+    await loadProfile(token);
   };
 
   return (

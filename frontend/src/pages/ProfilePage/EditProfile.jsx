@@ -21,6 +21,12 @@ export default function EditProfile() {
   useEffect(() => {
     const loadProfile = async () => {
       const res = await authFetch(`${API_URL}/usuarios/me`);
+      if (!res.ok) {
+        const text = await res.text();
+        console.error("Error response:", text);
+        throw new Error("Error en la petición");
+      }
+
       const data = await res.json();
 
       setFormData({
@@ -71,22 +77,38 @@ export default function EditProfile() {
           <form onSubmit={handleSubmit}>
             <label>
               Nombre
-              <input name="nombre" value={formData.nombre} onChange={handleChange} />
+              <input
+                name="nombre"
+                value={formData.nombre}
+                onChange={handleChange}
+              />
             </label>
 
             <label>
               Apellidos
-              <input name="apellidos" value={formData.apellidos} onChange={handleChange} />
+              <input
+                name="apellidos"
+                value={formData.apellidos}
+                onChange={handleChange}
+              />
             </label>
 
             <label>
               Nombre visible
-              <input name="displayName" value={formData.displayName} onChange={handleChange} />
+              <input
+                name="displayName"
+                value={formData.displayName}
+                onChange={handleChange}
+              />
             </label>
 
             <label>
               Artista favorito
-              <input name="favoriteArtist" value={formData.favoriteArtist} onChange={handleChange} />
+              <input
+                name="favoriteArtist"
+                value={formData.favoriteArtist}
+                onChange={handleChange}
+              />
             </label>
 
             <label>
