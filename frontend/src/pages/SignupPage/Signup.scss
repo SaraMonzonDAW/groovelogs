@@ -177,7 +177,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  }
+}
 
 .privacy-checkbox input {
   margin: 0;
@@ -193,10 +193,15 @@
   }
 }
 
-.privacy-policyLink{
+.privacy-policyLink {
   color: #38bdf8;
   text-decoration: none;
   cursor: pointer;
+}
+
+.login-button-page:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 @media (max-width: 576px) {
   .login-container {
