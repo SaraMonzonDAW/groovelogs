@@ -30,13 +30,13 @@ Controller → Service → Repository → Base de Datos
 
 ## 📖 Documentación técnica
 
-La documentación interna del backend se encuentra en la carpeta `/docs`:
-
-- [Capa de Services](docs/services.md)
-- [Capa de Entities](docs/entities.md)
-- [Capa de Security](docs/security.md)
-- [Capa de Repositories](docs/repositories.md)
-- [Capa de Controllers](docs/controllers.md)
+| Capa | Documento |
+|------|----------|
+| Services | [Ver documentación](docs/services.md) |
+| Entities | [Ver documentación](docs/entities.md) |
+| Security | [Ver documentación](docs/security.md) |
+| Repositories | [Ver documentación](docs/repositories.md) |
+| Controllers | [Ver documentación](docs/controllers.md) |
 
 ### :computer:Backend
 
