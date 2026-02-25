@@ -37,14 +37,13 @@ function Header() {
               className="admin-button"
               onClick={() => navigate("/admin")}
             >
-              Admin
+              Panel
             </button>
           )}
           <div className="user-pill" onClick={handleProfile}>
             <div className="user-text">
               <span className="username">
                 {user?.displayName}
-                {isAdmin && <span className="admin-badge">ADMIN</span>}
               </span>
               <span className="email">{user?.email}</span>
             </div>
