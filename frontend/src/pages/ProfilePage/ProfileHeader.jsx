@@ -1,5 +1,4 @@
 import { useAuth } from "../../context/AuthContext";
-import EditIcon from "../../assets/edit.svg";
 import { useNavigate } from "react-router-dom";
 import "./ProfileHeader.scss";
 

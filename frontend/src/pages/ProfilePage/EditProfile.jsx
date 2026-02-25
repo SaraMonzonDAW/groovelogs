@@ -99,18 +99,20 @@ export default function EditProfile() {
                 name="displayName"
                 value={formData.displayName}
                 onChange={handleChange}
+                maxLength={16}
               />
+              <small>{formData.displayName.length}/16</small>
             </label>
-
             <label>
               Artista favorito
               <input
                 name="favoriteArtist"
                 value={formData.favoriteArtist}
                 onChange={handleChange}
+                maxLength={16}
               />
+              <small>{formData.favoriteArtist.length}/16</small>
             </label>
-
             <label>
               Email
               <input value={formData.email} disabled />
