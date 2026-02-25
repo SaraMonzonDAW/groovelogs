@@ -12,6 +12,7 @@ export default function AuthModal({ isOpen, onClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   if (!isOpen) return null;
 
@@ -19,10 +20,11 @@ export default function AuthModal({ isOpen, onClose }) {
     onClose();
     navigate("/signup");
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     try {
       const response = await fetch(`${API_URL}/auth/login`, {
@@ -45,13 +47,17 @@ export default function AuthModal({ isOpen, onClose }) {
       navigate("/");
     } catch (err) {
       setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="auth-overlay" onClick={onClose}>
       <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="auth-modal__close" onClick={onClose}>✕</button>
+        <button className="auth-modal__close" onClick={onClose}>
+          ✕
+        </button>
 
         <div className="auth-modal__logo">
           <div className="logo-circle">GL</div>
@@ -85,8 +91,12 @@ export default function AuthModal({ isOpen, onClose }) {
 
           {error && <p className="auth-error">{error}</p>}
 
-          <button type="submit" className="auth-submit">
-            Iniciar Sesión
+          <button type="submit" className="auth-submit" disabled={loading}>
+            {loading ? (
+              <span className="auth-spinner"></span>
+            ) : (
+              "Iniciar Sesión"
+            )}
           </button>
         </form>
 
