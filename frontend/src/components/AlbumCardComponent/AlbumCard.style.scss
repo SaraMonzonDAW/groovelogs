@@ -32,6 +32,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  overflow: hidden; 
   @include smooth-transition();
 
   img {
@@ -45,9 +46,19 @@
     transform: scale(1.1);
   }
 
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.85;
+  }
+
+  &.is-loading {
+    img {
+      opacity: 0; 
+    }
+  }
+
   &.is-active {
     background: radial-gradient(circle at top, #ff6fa5, #ff2f6f);
-
     box-shadow: 0 0 0 0 rgba(255, 47, 111, 0.7),
       0 8px 20px rgba(255, 47, 111, 0.6);
 
@@ -59,7 +70,21 @@
     }
   }
 }
+.mini-spinner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
 
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 .album-card__content {
   padding: $space-4;
   color: $text-primary;

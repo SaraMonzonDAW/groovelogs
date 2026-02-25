@@ -17,6 +17,7 @@ export default function AlbumCard({ item, searchTrack, onRequireAuth, index }) {
   const [hoverRating, setHoverRating] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
   const [average, setAverage] = useState(0);
+  const [favoriteLoading, setFavoriteLoading] = useState(false);
 
   const [artist, releaseTitle] = item.title.includes(" - ")
     ? item.title.split(" - ")
@@ -73,11 +74,13 @@ export default function AlbumCard({ item, searchTrack, onRequireAuth, index }) {
       .catch(() => setRating(0));
   }, [isAuthenticated, item.id]);
 
-  function handleFavorite() {
+  async function handleFavorite() {
     if (!isAuthenticated) {
       onRequireAuth();
       return;
     }
+
+    if (favoriteLoading) return;
 
     const favorito = {
       discogsId: item.id,
@@ -86,14 +89,20 @@ export default function AlbumCard({ item, searchTrack, onRequireAuth, index }) {
       artista: artist,
     };
 
-    if (isFavorite) {
-      removeFavorite(item.id, "album")
-        .then(() => setIsFavorite(false))
-        .catch(console.error);
-    } else {
-      addFavorite(favorito)
-        .then(() => setIsFavorite(true))
-        .catch(console.error);
+    try {
+      setFavoriteLoading(true);
+
+      if (isFavorite) {
+        await removeFavorite(item.id, "album");
+        setIsFavorite(false);
+      } else {
+        await addFavorite(favorito);
+        setIsFavorite(true);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setFavoriteLoading(false);
     }
   }
 
@@ -124,10 +133,14 @@ export default function AlbumCard({ item, searchTrack, onRequireAuth, index }) {
           }}
         />
         <button
-          className={`album-card__favorite ${isFavorite ? "is-active" : ""}`}
+          className={`album-card__favorite 
+    ${isFavorite ? "is-active" : ""} 
+    ${favoriteLoading ? "is-loading" : ""}`}
           onClick={handleFavorite}
+          disabled={favoriteLoading}
         >
           <img src={Heart} alt="Favorite" />
+          {favoriteLoading && <span className="mini-spinner"></span>}
         </button>
       </div>
 
