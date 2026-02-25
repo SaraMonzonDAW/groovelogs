@@ -28,59 +28,51 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         this.userDetailsService = userDetailsService;
     }
 
-   @Override
-    protected void doFilterInternal(
+@Override
+protected void doFilterInternal(
         HttpServletRequest request,
         HttpServletResponse response,
         FilterChain filterChain
-    ) throws ServletException, IOException {
-
-    String path = request.getServletPath();
-    if (path.startsWith("/api/auth") || path.startsWith("/swagger-ui") || path.startsWith("/v3/api-docs")) {
-        filterChain.doFilter(request, response);
-        return;
-    }
+) throws ServletException, IOException {
 
     final String authHeader = request.getHeader("Authorization");
 
     if (authHeader != null && authHeader.startsWith("Bearer ")) {
 
-        String jwt = authHeader.substring(7);
-
         try {
+            String jwt = authHeader.substring(7);
             String email = jwtUtil.extractEmail(jwt);
 
             if (email != null &&
                 SecurityContextHolder.getContext().getAuthentication() == null) {
 
                 UserDetails userDetails =
-                    userDetailsService.loadUserByUsername(email);
+                        userDetailsService.loadUserByUsername(email);
 
                 if (jwtUtil.isTokenValid(jwt, userDetails)) {
 
                     UsernamePasswordAuthenticationToken authToken =
-                        new UsernamePasswordAuthenticationToken(
-                            userDetails,
-                            null,
-                            userDetails.getAuthorities()
-                        );
+                            new UsernamePasswordAuthenticationToken(
+                                    userDetails,
+                                    null,
+                                    userDetails.getAuthorities()
+                            );
 
                     authToken.setDetails(
-                        new WebAuthenticationDetailsSource()
-                            .buildDetails(request)
+                            new WebAuthenticationDetailsSource()
+                                    .buildDetails(request)
                     );
 
                     SecurityContextHolder
-                        .getContext()
-                        .setAuthentication(authToken);
+                            .getContext()
+                            .setAuthentication(authToken);
                 }
             }
 
         } catch (Exception e) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            return;
         }
     }
+
     filterChain.doFilter(request, response);
 }
 }
