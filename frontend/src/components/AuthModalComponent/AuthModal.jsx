@@ -93,7 +93,7 @@ export default function AuthModal({ isOpen, onClose }) {
 
           <button type="submit" className="auth-submit" disabled={loading}>
             {loading ? (
-              <span className="auth-spinner"></span>
+              <span>Iniciando...</span>
             ) : (
               "Iniciar Sesión"
             )}
