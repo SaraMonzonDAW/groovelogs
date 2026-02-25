@@ -32,21 +32,22 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody Usuario usuario) {
+public ResponseEntity<?> register(@RequestBody Usuario usuario) {
 
-        if (usuarioService.emailExists(usuario.getEmail())) {
-            return ResponseEntity
-                .status(HttpStatus.CONFLICT)
-                .body("El email ya está registrado");
-        }
+    System.out.println("🔥 REGISTER EJECUTADO 🔥");
 
-        Usuario creado = usuarioService.crearUsuario(usuario);
-
+    if (usuarioService.emailExists(usuario.getEmail())) {
         return ResponseEntity
-            .status(HttpStatus.CREATED)
-            .body(creado);
+            .status(HttpStatus.CONFLICT)
+            .body("El email ya está registrado");
     }
 
+    Usuario creado = usuarioService.crearUsuario(usuario);
+
+    return ResponseEntity
+        .status(HttpStatus.CREATED)
+        .body(creado);
+}
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
 
